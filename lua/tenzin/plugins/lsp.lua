@@ -26,12 +26,10 @@ return {
 					"jsonls",
 					"jdtls",
 					"tsserver",
-					"ltex",
 					"lua_ls",
 					"autotools_ls",
 					"markdown_oxide",
 					"jedi_language_server",
-					"r_language_server",
 					"rust_analyzer"
 				}
 

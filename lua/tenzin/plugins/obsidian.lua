@@ -1,3 +1,4 @@
+--[[
 return {
   "epwalsh/obsidian.nvim",
   version = "*",
@@ -22,3 +23,6 @@ return {
 		},
 	}
 }
+]]
+
+return {}
