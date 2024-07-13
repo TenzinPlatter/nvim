@@ -30,7 +30,8 @@ return {
 					"autotools_ls",
 					"markdown_oxide",
 					"jedi_language_server",
-					"rust_analyzer"
+					"rust_analyzer",
+					"cssls",
 				}
 
 			})
