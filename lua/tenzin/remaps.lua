@@ -1,3 +1,9 @@
+-- center divs after wrap with abbreviation by emmet
+vim.keymap.set('n', '<leader>e', 'vat=')
+
+-- paste in insert from unnamed register
+vim.keymap.set('i', '<C-f>', '<C-r>"')
+
 -- initial setup for 4 windows all at 80 characters
 vim.keymap.set('n', '<leader>i', ":vsp<CR>:vsp<CR>:vsp<CR><C-h><C-h><C-h><C-h> w<C-l> w<C-l> w<C-l>")
 
@@ -17,6 +23,8 @@ vim.keymap.set('n', '<leader>/', function()
 	vim.cmd('nohlsearch')
 end)
 
+-- put a semicolon on the end of a line
+vim.keymap.set("n", "<leader>;", "$a;<esc>")
 
 -- make the window biger vertically
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], {})

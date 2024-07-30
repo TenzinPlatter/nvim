@@ -2,9 +2,9 @@
 -- remove space below to comment out autosave while editing config
 -- [[
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-pattern = { "*" },
-command = "wall",
-nested = true,
+	pattern = { "*" },
+	command = "wall",
+	nested = true,
 })
 -- ]]
 
@@ -25,7 +25,7 @@ function Aesthetics(colourscheme)
 
 	-- set highlight colours
 	vim.cmd('hi Visual guibg=Black gui=none')
-	vim.cmd('hi MatchParen guibg=#82aaff')
+	-- vim.cmd('hi MatchParen guibg=#82aaff')
 	vim.cmd('hi Search guibg=#FEFFA7')
 	vim.cmd('hi CursorLineNr guibg=White')
 	vim.cmd('hi ColorColumn guibg=Black')
@@ -73,7 +73,6 @@ vim.opt.colorcolumn = "80"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.o.statuscolumn = "%s %l %r "
-
 
 vim.g.rustaceanvim = {
   -- Plugin configuration
