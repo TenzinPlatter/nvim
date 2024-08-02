@@ -1,6 +1,6 @@
 -- Autosave on exit of insert if text has been changed
 -- remove space below to comment out autosave while editing config
---[[
+-- [[
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	pattern = { "*" },
 	command = "wall",
