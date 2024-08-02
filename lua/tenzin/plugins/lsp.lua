@@ -40,13 +40,14 @@ return {
 
 			local my_on_attach = function(client, bufnr)
 				vim.keymap.set('n', '<leader>th', function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+
 					if vim.lsp.inlay_hint.is_enabled() then
-						print("Disabling inlay hints")
+						print("Disabled inlay hints")
 					else
-						print("Enabling inlay hints")
+						print("Enabled inlay hints")
 					end
 
-					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end)
 
 				vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)

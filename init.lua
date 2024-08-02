@@ -1,6 +1,6 @@
 -- Autosave on exit of insert if text has been changed
 -- remove space below to comment out autosave while editing config
--- [[
+--[[
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	pattern = { "*" },
 	command = "wall",
@@ -87,13 +87,13 @@ vim.g.rustaceanvim = {
 				end
 				]]
 				vim.keymap.set('n', '<leader>th', function()
-					if vim.lsp.inlay_hint.is_enabled() then
-						print("Disabling inlay hints")
-					else
-						print("Enabling inlay hints")
-					end
-
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+
+					if vim.lsp.inlay_hint.is_enabled() then
+						print("Disabled inlay hints")
+					else
+						print("Enabled inlay hints")
+					end
 				end)
     end,
     default_settings = {
