@@ -8,6 +8,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 })
 -- ]]
 
+
 function Aesthetics(colourscheme)
 	colourscheme = colourscheme or "tokyonight"
 
@@ -72,6 +73,7 @@ vim.opt.shiftwidth = 2
 vim.opt.colorcolumn = "80"
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.opt.mouse = ""
 vim.o.statuscolumn = "%s %l %r "
 
 vim.g.rustaceanvim = {
