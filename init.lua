@@ -66,7 +66,7 @@ require("lazy").setup("tenzin.plugins", {})
 require("tenzin.remaps")
 
 -- sets theme, either pass in theme or will use tokyonight as default
-Aesthetics("gruvbox")
+Aesthetics("palenight")
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
