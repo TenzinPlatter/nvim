@@ -21,17 +21,12 @@ return {
 			})
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"typos_lsp",
 					"clangd",
 					"jsonls",
-					"jdtls",
-					"tsserver",
 					"lua_ls",
-					"autotools_ls",
 					"markdown_oxide",
-					"jedi_language_server",
+					"pyright",
 					"rust_analyzer",
-					"cssls",
 				}
 
 			})

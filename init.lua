@@ -1,3 +1,6 @@
+-- disable deprecated messages on startup
+vim.deprecate = function() end
+
 -- Autosave on exit of insert if text has been changed
 -- remove space below to comment out autosave while editing config
 -- [[
@@ -7,6 +10,20 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
 	nested = true,
 })
 -- ]]
+
+-- Highlight Yanked area
+vim.api.nvim_create_autocmd('TextYankPost', {
+  group = vim.api.nvim_create_augroup('highlight_yank', {}),
+  desc = 'Highlight selection on yank',
+  pattern = '*',
+  callback = function()
+    vim.highlight.on_yank {
+			higroup = 'Visual',
+			timeout = 300,
+			on_visual = false
+		}
+  end,
+})
 
 
 function Aesthetics(colourscheme)
@@ -66,7 +83,7 @@ require("lazy").setup("tenzin.plugins", {})
 require("tenzin.remaps")
 
 -- sets theme, either pass in theme or will use tokyonight as default
-Aesthetics("palenight")
+Aesthetics("gruvbox")
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -74,7 +91,7 @@ vim.opt.colorcolumn = "80"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.mouse = ""
-vim.o.statuscolumn = "%s %l %r "
+vim.o.statuscolumn = "%s %l %r"
 
 vim.g.rustaceanvim = {
   -- Plugin configuration
