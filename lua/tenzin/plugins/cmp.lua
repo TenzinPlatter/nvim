@@ -13,11 +13,13 @@ return {
 			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 			cmp.event:on(
-			'confirm_done',
-			cmp_autopairs.on_confirm_done()
+				'confirm_done',
+				cmp_autopairs.on_confirm_done()
 			)
 
+			local luasnip = require("luasnip")
 			require("luasnip.loaders.from_vscode").lazy_load()
+
 			cmp.setup({
 				snippet = {
 					expand = function(args)
@@ -26,11 +28,32 @@ return {
 				},
 
 				mapping = cmp.mapping.preset.insert({
-					['<C-b>'] = cmp.mapping.scroll_docs(-4),
-					['<C-f>'] = cmp.mapping.scroll_docs(4),
+					['<C-u>'] = cmp.mapping.scroll_docs(-4),
+					['<C-d>'] = cmp.mapping.scroll_docs(4),
 					['<C-o>'] = cmp.mapping.complete(),
 					['<C-e>'] = cmp.mapping.abort(),
-					['<tab>'] = cmp.mapping.confirm({ select = true }),
+					['<Tab>'] = cmp.mapping.confirm({ select = true }),
+
+					['<C-L>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.mapping.confirm({ select = true })
+						elseif luasnip.expand_or_jumpable() then
+							luasnip.expand_or_jump()
+						else
+							fallback()
+						end
+					end, { 'i', 's' }),
+
+					['<C-H>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.mapping.confirm({ select = true })
+						elseif luasnip.jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { 'i', 's' }),
+
 				}),
 
 				sources = cmp.config.sources({

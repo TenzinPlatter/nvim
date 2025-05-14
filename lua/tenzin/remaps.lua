@@ -1,7 +1,10 @@
--- helix stuff
-vim.keymap.set("n", "gh", "0")
-vim.keymap.set("n", "gl", "$")
-vim.keymap.set("n", "gs", "^")
+-- format buf
+vim.keymap.set("n", "<C-u>", function()
+	vim.lsp.buf.format({ bufnr = 0, async = true })
+end)
+
+vim.keymap.set("n", "<C-l>", "xp")
+vim.keymap.set("n", "<C-h>", "xhP")
 
 -- Copy selection to clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
@@ -18,7 +21,7 @@ vim.keymap.set("v", "<leader>p", '"+p')
 -- Format entire buffer
 vim.keymap.set("n", "<leader>=", "ggVG=")
 
--- Navigate quick fix list 
+-- Navigate quick fix list
 vim.keymap.set("n", "<leader>j", function() vim.cmd("cnext") end)
 vim.keymap.set("n", "<leader>k", function() vim.cmd("cprev") end)
 
@@ -29,13 +32,12 @@ vim.keymap.set("n", "k", "gk")
 -- paste in insert from unnamed register
 vim.keymap.set('i', '<C-f>', '<C-r>"')
 
--- when using gd (go definition), center text
-vim.keymap.set('n', 'gd', 'gdzz')
-vim.keymap.set('n', '<C-o>', '<C-o>zz')
-vim.keymap.set('n', 'n', 'nzz')
-
 -- clears highlight left after searching
-vim.keymap.set('n', '<leader>/', function() vim.cmd('nohlsearch') end)
+vim.keymap.set('n', '<C-c>', function() vim.cmd('nohlsearch') end)
+
+-- center on move
+vim.keymap.set("n", "n", "nzz")
+vim.keymap.set("n", "gd", "gdzz")
 
 -- make the window bigger vertically
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
