@@ -10,7 +10,7 @@ vim.keymap.set("n", "<C-h>", "xhP")
 vim.keymap.set("v", "<leader>y", '"+y')
 
 -- Highlight whole buffer
-vim.keymap.set("n", "<leader>a", "ggVG")
+vim.keymap.set("n", "<leader>%", "ggVG")
 
 -- Copy line to clipboard
 vim.keymap.set("n", "<leader>yy", '"+yy')
