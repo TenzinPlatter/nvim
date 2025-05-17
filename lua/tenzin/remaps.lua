@@ -1,3 +1,11 @@
+-- lsp stuff, on attach not working for some reason
+vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
+vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
+vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+
 -- format buf
 vim.keymap.set("n", "<C-u>", function()
 	vim.lsp.buf.format({ bufnr = 0, async = true })
@@ -17,6 +25,7 @@ vim.keymap.set("n", "<leader>yy", '"+yy')
 
 -- Paste from clipboard
 vim.keymap.set("v", "<leader>p", '"+p')
+vim.keymap.set("n", "<leader>p", '"+p')
 
 -- Format entire buffer
 vim.keymap.set("n", "<leader>=", "ggVG=")
@@ -36,8 +45,8 @@ vim.keymap.set('i', '<C-f>', '<C-r>"')
 vim.keymap.set('n', '<C-c>', function() vim.cmd('nohlsearch') end)
 
 -- center on move
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "gd", "gdzz")
+-- vim.keymap.set("n", "n", "nzz")
+-- vim.keymap.set("n", "gd", "gdzz")
 
 -- make the window bigger vertically
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
