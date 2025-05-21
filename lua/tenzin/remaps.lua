@@ -9,6 +9,7 @@ vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 -- format buf
 vim.keymap.set("n", "<C-u>", function()
 	vim.lsp.buf.format({ bufnr = 0, async = true })
+	vim.cmd("wa")
 end)
 
 vim.keymap.set("n", "<C-l>", "xp")
