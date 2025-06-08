@@ -9,10 +9,10 @@ return {
 	},
 
 	config = function()
-		local builtin = require('telescope.builtin')
-		vim.keymap.set('n', '<leader>f', builtin.find_files)
-		vim.keymap.set('n', '<leader>/', builtin.live_grep)
-		vim.keymap.set('n', '<leader>?', builtin.grep_string)
-		vim.keymap.set('n', '<leader>S', builtin.lsp_workspace_symbols)
+		-- local builtin = require('telescope.builtin')
+		-- vim.keymap.set('n', '<leader>f', builtin.find_files)
+		-- vim.keymap.set('n', '<leader>/', builtin.live_grep)
+		-- vim.keymap.set('n', '<leader>?', builtin.grep_string)
+		-- vim.keymap.set('n', '<leader>S', builtin.lsp_workspace_symbols)
 	end
 }

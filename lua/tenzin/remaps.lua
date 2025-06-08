@@ -26,7 +26,7 @@ end)
 vim.keymap.set("n", "zi", "za")
 
 -- Format entire buffer
-vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>=", function() vim.lsp.buf.format() end)
 
 vim.keymap.set("n", "<C-S>", function()
 	vim.cmd("wall")
@@ -61,10 +61,6 @@ vim.keymap.set('i', '<C-f>', '<C-r>"')
 
 -- clears highlight left after searching
 vim.keymap.set('n', '<C-c>', function() vim.cmd('nohlsearch') end)
-
--- center on move
--- vim.keymap.set("n", "n", "nzz")
--- vim.keymap.set("n", "gd", "gdzz")
 
 -- make the window bigger vertically
 vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
