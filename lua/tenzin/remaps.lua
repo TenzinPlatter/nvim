@@ -1,15 +1,36 @@
--- lsp stuff, on attach not working for some reason
+-- lsp stuff
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
 vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+vim.keymap.set('n', '<leader>sh', function()
+	local function is_clangd_attached(bufnr)
+		bufnr = bufnr or vim.api.nvim_get_current_buf()
+		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
+			if client.name == "clangd" then
+				return true
+			end
+		end
+		return false
+	end
 
--- format buf
-vim.keymap.set("n", "<C-u>", function()
-	vim.lsp.buf.format({ bufnr = 0, async = true })
-	vim.cmd("wa")
+	if is_clangd_attached() then
+		vim.cmd("LspClangdSwitchSourceHeader")
+	else
+		print('clangd not attached')
+	end
+end)
+
+vim.keymap.set("n", "zi", "za")
+
+
+-- Format entire buffer
+vim.keymap.set("n", "<leader>=", vim.lsp.buf.format)
+
+vim.keymap.set("n", "<C-S>", function()
+	vim.cmd("wall")
 end)
 
 vim.keymap.set("n", "<C-l>", "xp")
@@ -27,9 +48,6 @@ vim.keymap.set("n", "<leader>yy", '"+yy')
 -- Paste from clipboard
 vim.keymap.set("v", "<leader>p", '"+p')
 vim.keymap.set("n", "<leader>p", '"+p')
-
--- Format entire buffer
-vim.keymap.set("n", "<leader>=", "ggVG=")
 
 -- Navigate quick fix list
 vim.keymap.set("n", "<leader>j", function() vim.cmd("cnext") end)
@@ -71,13 +89,5 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
 -- move line up/ down
 vim.keymap.set("n", "<C-j>", "V:m '>+1<CR>gv=gv")
 vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=gv")
-
--- keep highlight when indenting
-vim.keymap.set('v', '>', '>gv')
-vim.keymap.set('v', '<', '<gv')
-
--- keep highlight when indenting
-vim.keymap.set('n', '>', 'V>gv')
-vim.keymap.set('n', '<', 'V<gv')
 
 vim.keymap.set('n', 'ZZ', ':wqa!<cr>')

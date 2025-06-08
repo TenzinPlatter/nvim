@@ -88,11 +88,10 @@ vim.opt.cursorlineopt = 'number'
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.colorcolumn = "80"
-vim.opt.nu = true
-vim.opt.relativenumber = true
 vim.opt.mouse = ""
 vim.opt.splitright = true
 vim.opt.splitbelow = true
+vim.opt.linebreak = true
 
 -- folds
 vim.opt.foldmethod = "expr"
@@ -103,6 +102,9 @@ vim.opt.foldtext = ""
 vim.opt.foldlevel = 99
 -- vim.opt.foldlevelstart = 1
 vim.opt.foldnestmax = 4
+
+vim.opt.rnu = true
+vim.opt.nu = true
 
 vim.g.rustaceanvim = {
 	tools = {
@@ -121,7 +123,7 @@ vim.g.rustaceanvim = {
 		end,
 		default_settings = {
 			-- rust-analyzer language server configuration
-			-- needs to be empty for rustaceanvim plugin 
+			-- needs to be empty for rustaceanvim plugin
 			['rust-analyzer'] = {
 			},
 		},
