@@ -1,15 +1,34 @@
--- lsp stuff, on attach not working for some reason
+-- lsp stuff
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename)
 vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
 vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
 vim.keymap.set('n', 'K', vim.lsp.buf.hover)
+vim.keymap.set('n', '<leader>sh', function()
+	local function is_clangd_attached(bufnr)
+		bufnr = bufnr or vim.api.nvim_get_current_buf()
+		for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
+			if client.name == "clangd" then
+				return true
+			end
+		end
+		return false
+	end
 
--- format buf
-vim.keymap.set("n", "<C-u>", function()
-	vim.lsp.buf.format({ bufnr = 0, async = true })
-	vim.cmd("wa")
+	if is_clangd_attached() then
+		vim.cmd("LspClangdSwitchSourceHeader")
+	else
+		print('clangd not attached')
+	end
+end)
+
+vim.keymap.set("n", "zi", "za")
+
+-- format and write all buffers
+vim.keymap.set("n", "<C-S>", function()
+	vim.lsp.buf.format()
+	vim.cmd("wall")
 end)
 
 vim.keymap.set("n", "<C-l>", "xp")
