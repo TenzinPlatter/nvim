@@ -25,9 +25,6 @@ end)
 
 vim.keymap.set("n", "zi", "za")
 
--- Format entire buffer
-vim.keymap.set("n", "<leader>=", function() vim.lsp.buf.format() end)
-
 vim.keymap.set("n", "<C-S>", function()
 	vim.cmd("wall")
 end)
