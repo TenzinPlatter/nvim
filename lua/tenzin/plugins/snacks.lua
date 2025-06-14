@@ -12,9 +12,14 @@ return {
       enabled = true,
       timeout = 3000,
     },
-    picker = { enabled = true, hidden = true, ignored = true },
+    picker = {
+			enabled = true,
+			sources = {
+				files = { hidden = true, ignored = true, }
+			}
+		},
     quickfile = { enabled = true },
-    scope = { enabled = true },
+    scope = { enabled = false },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
     words = { enabled = true },
