@@ -69,10 +69,10 @@ vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]])
 vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]])
 
 -- move in insert with CTRL + h/j/k/l
-vim.keymap.set('i', '<C-h>', '<left>')
-vim.keymap.set('i', '<C-j>', '<down>')
-vim.keymap.set('i', '<C-k>', '<up>')
-vim.keymap.set('i', '<C-l>', '<right>')
+-- vim.keymap.set('i', '<C-h>', '<left>')
+-- vim.keymap.set('i', '<C-j>', '<down>')
+-- vim.keymap.set('i', '<C-k>', '<up>')
+-- vim.keymap.set('i', '<C-l>', '<right>')
 
 -- move selection up/ down
 vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
