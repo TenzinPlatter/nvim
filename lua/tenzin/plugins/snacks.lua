@@ -8,8 +8,10 @@ return {
     explorer = {
 			enabled = true,
 			sources = {
-				files = { hidden = true, ignored = true, }
-			}
+				files = { hidden = true, ignored = true, },
+			},
+			hidden = true,
+			ignored = true,
 		},
     indent = { enabled = true },
     input = { enabled = true },
@@ -20,8 +22,10 @@ return {
     picker = {
 			enabled = true,
 			sources = {
-				files = { hidden = true, ignored = true, }
+				files = { hidden = true, ignored = true, },
 			},
+			hidden = true,
+			ignored = true,
 			exclude = {
 				".git",
 				"node_modules",
