@@ -1,6 +1,6 @@
 return {
   "folke/snacks.nvim",
-  prioirty = 1000,
+  priority = 1000,
   lazy = false,
   opts = {
     bigfile = { enabled = true },
@@ -15,14 +15,14 @@ return {
     picker = {
 			enabled = true,
 			sources = {
-				files = { hidden = true, ignored = true, }
+				files = { hidden = true, ignored = false, }
 			}
 		},
     quickfile = { enabled = true },
     scope = { enabled = false },
     scroll = { enabled = true },
     statuscolumn = { enabled = true },
-    words = { enabled = true },
+    words = { enabled = false },
     styles = {
       notification = {
         -- wo = { wrap = true } -- Wrap notifications

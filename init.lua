@@ -86,7 +86,10 @@ vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
 
 vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+
 vim.opt.colorcolumn = "80"
 vim.opt.mouse = ""
 vim.opt.splitright = true
@@ -105,6 +108,8 @@ vim.opt.foldnestmax = 4
 
 vim.opt.rnu = true
 vim.opt.nu = true
+
+vim.cmd("colorscheme nordfox")
 
 vim.g.rustaceanvim = {
 	tools = {

@@ -1,23 +1,23 @@
 return {
-	{
-		"https://github.com/zaldih/themery.nvim",
-		config = function()
-			vim.keymap.set('n', '<leader>tp', ':Themery<CR>')
+	-- {
+	-- 	"https://github.com/zaldih/themery.nvim",
+	-- 	config = function()
+	-- 		vim.keymap.set('n', '<leader>tp', ':Themery<CR>')
 
-			require("themery").setup({
-				themes = {
-					"gruvbox",
-					"tokyonight",
-					"catppuccin",
-					"no-clown-fiesta",
-					"rose-pine",
-					"kanagawa",
-					"github_dark",
-					"nordfox",
-				}
-			})
-		end
-	},
+	-- 		require("themery").setup({
+	-- 			themes = {
+	-- 				"gruvbox",
+	-- 				"tokyonight",
+	-- 				"catppuccin",
+	-- 				"no-clown-fiesta",
+	-- 				"rose-pine",
+	-- 				"kanagawa",
+	-- 				"github_dark",
+	-- 				"nordfox",
+	-- 			}
+	-- 		})
+	-- 	end
+	-- },
 	{
 		"https://github.com/rebelot/kanagawa.nvim",
 		config = function()
@@ -67,9 +67,6 @@ return {
 			require("tokyonight").setup({
 				style = "storm",
 				transparent = true,
-				styles = {
-					functions = { italic = true }
-				}
 			})
 		end
 	},
@@ -87,10 +84,6 @@ return {
 			require("nightfox").setup({
 				options = {
 					transparent = true,
-					styles = {
-						comments = "italic",
-						functions = "italic",
-					},
 				},
 			})
 		end
