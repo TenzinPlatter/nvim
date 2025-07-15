@@ -13,9 +13,9 @@ return {
     "TmuxNavigatorProcessList",
   },
   keys = {
-    { "<M-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
-    { "<M-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
-    { "<M-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
-    { "<M-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+    { "<M-h>", function() vim.cmd("TmuxNavigateLeft") end},
+    { "<M-j>", function() vim.cmd("TmuxNavigateDown") end},
+    { "<M-k>", function() vim.cmd("TmuxNavigateUp") end},
+    { "<M-l>", function() vim.cmd("TmuxNavigateRight") end},
   },
 }
