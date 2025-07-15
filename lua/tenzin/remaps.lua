@@ -29,8 +29,8 @@ vim.keymap.set("n", "<C-S>", function()
 	vim.cmd("wall")
 end)
 
-vim.keymap.set("n", "<M-l>", "xp")
-vim.keymap.set("n", "<M-h>", "xhP")
+vim.keymap.set("n", "<C-l>", "xp")
+vim.keymap.set("n", "<C-h>", "xhP")
 
 -- Copy selection to clipboard
 vim.keymap.set("v", "<leader>y", '"+y')
