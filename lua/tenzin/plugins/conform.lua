@@ -5,6 +5,7 @@ return {
 			python = { "black" },
 			c = { "clang-format" },
       lua = { "stylua" },
+      rust = { "rustfmt" },
 		}
 	},
 	keys = {
