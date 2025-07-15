@@ -75,5 +75,7 @@ vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
 -- move line up/ down
 vim.keymap.set("n", "<C-j>", "V:m '>+1<CR>gv=gv")
 vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=gv")
+vim.keymap.set("x", "<", "gv<")
+vim.keymap.set("x", ">", "gv>")
 
 vim.keymap.set('n', 'ZZ', ':wqa!<cr>')
