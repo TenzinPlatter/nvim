@@ -79,8 +79,3 @@ vim.keymap.set("v", "<", "gv<")
 vim.keymap.set("v", ">", "gv>")
 
 vim.keymap.set('n', 'ZZ', ':wqa!<cr>')
-
-vim.keymap.set("n", "<M-h>", function() vim.cmd("TmuxNavigateLeft") end)
-vim.keymap.set("n", "<M-j>", function() vim.cmd("TmuxNavigateDown") end)
-vim.keymap.set("n", "<M-k>", function() vim.cmd("TmuxNavigateUp") end)
-vim.keymap.set("n", "<M-l>", function() vim.cmd("TmuxNavigateRight") end)
