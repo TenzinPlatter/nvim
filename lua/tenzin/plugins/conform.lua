@@ -6,6 +6,7 @@ return {
 			c = { "clang-format" },
       lua = { "stylua" },
       yaml = { "yamlfmt" },
+      rust = { "rustfmt" },
 		}
 	},
 	keys = {
