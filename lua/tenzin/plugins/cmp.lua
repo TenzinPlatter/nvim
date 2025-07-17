@@ -56,13 +56,20 @@ return {
 				}),
 
 				sources = cmp.config.sources({
-					{ name = 'nvim_lsp' },
-					{ name = 'luasnip' },
+					{ name = "nvim_lsp" },
+					{ name = "luasnip" },
 					{ name = "copilot" },
+          { name = "fuzzy_path" }
 				}, {
-					{ name = 'buffer' },
+					{ name = "buffer" },
 				})
 			})
+
+      cmp.setup.cmdline(':', {
+        sources = cmp.config.sources({
+          { name = 'fuzzy_path' }
+        })
+      })
 		end
 	}
 }
