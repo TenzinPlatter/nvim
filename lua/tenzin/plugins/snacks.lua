@@ -22,9 +22,9 @@ return {
     picker = {
 			enabled = true,
 			sources = {
-				files = { hidden = true, ignored = true, },
+				files = { hidden = true, ignored = false, },
 			},
-			hidden = true,
+			hidden = false,
 			ignored = true,
 			exclude = {
 				".git",
