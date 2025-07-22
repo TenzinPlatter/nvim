@@ -13,7 +13,11 @@ return {
 		config = function()
 			require("rose-pine").setup({
 				variant = "moon",
-				styles = { transparency = true, }
+				styles = {
+					transparency = true,
+					bold = false,
+					italic = false,
+				}
 			})
 		end
 	},

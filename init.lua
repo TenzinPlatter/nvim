@@ -109,7 +109,7 @@ vim.opt.foldnestmax = 4
 vim.opt.rnu = true
 vim.opt.nu = true
 
-vim.cmd("colorscheme nordfox")
+vim.cmd("colorscheme rose-pine")
 
 vim.g.rustaceanvim = {
 	tools = {

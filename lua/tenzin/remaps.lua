@@ -78,6 +78,7 @@ vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 
+vim.keymap.set("n", "ZZ", ":wqa")
 
 -- Show LSP hover for function when cursor is in parameter braces
 vim.keymap.set('i', '<A-i>', function()
