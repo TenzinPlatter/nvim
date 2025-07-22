@@ -1,23 +1,4 @@
 return {
-	-- {
-	-- 	"https://github.com/zaldih/themery.nvim",
-	-- 	config = function()
-	-- 		vim.keymap.set('n', '<leader>tp', ':Themery<CR>')
-
-	-- 		require("themery").setup({
-	-- 			themes = {
-	-- 				"gruvbox",
-	-- 				"tokyonight",
-	-- 				"catppuccin",
-	-- 				"no-clown-fiesta",
-	-- 				"rose-pine",
-	-- 				"kanagawa",
-	-- 				"github_dark",
-	-- 				"nordfox",
-	-- 			}
-	-- 		})
-	-- 	end
-	-- },
 	{
 		"https://github.com/rebelot/kanagawa.nvim",
 		config = function()
