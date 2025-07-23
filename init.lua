@@ -84,6 +84,7 @@ vim.opt.conceallevel = 1
 
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = 'number'
+vim.opt.smartcase = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
