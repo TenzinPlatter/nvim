@@ -5,23 +5,12 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.keymap.set("n", "<leader>sh", function()
-  local function is_clangd_attached(bufnr)
-    bufnr = bufnr or vim.api.nvim_get_current_buf()
-    for _, client in pairs(vim.lsp.get_active_clients({ bufnr = bufnr })) do
-      if client.name == "clangd" then
-        return true
-      end
-    end
-    return false
-  end
-
-  if is_clangd_attached() then
-    vim.cmd("ClangdSwitchSourceHeader")
-  else
-    print("clangd not attached")
-  end
-end)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"c", "h", "cpp", "hpp"},
+  callback = function()
+    vim.keymap.set('n', '<leader>sh', ':ClangdSwitchSourceHeader<CR>', { buffer = true })
+  end,
+})
 
 vim.keymap.set("n", "zi", "za")
 
