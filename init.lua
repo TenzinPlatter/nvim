@@ -16,6 +16,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("tenzin.plugins", {})
 require("tenzin.remaps")
+require("tenzin.helpers")
 
 -- colorizer has to be setup after
 require('colorizer').setup()
