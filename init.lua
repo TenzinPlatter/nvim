@@ -65,6 +65,7 @@ vim.diagnostic.config({ virtual_text = true })
 -- transparent background
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+vim.api.nvim_set_hl(0, 'CursorLine', { link = 'Visual' })
 
 -- set highlight colours
 vim.cmd('hi Visual guibg=Black gui=none')
@@ -84,7 +85,7 @@ vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")
 vim.opt.conceallevel = 1
 
 vim.opt.cursorline = true
-vim.opt.cursorlineopt = 'number'
+-- vim.opt.cursorlineopt = 'number'
 vim.opt.smartcase = true
 
 vim.opt.tabstop = 2
