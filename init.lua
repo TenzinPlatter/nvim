@@ -72,7 +72,7 @@ vim.api.nvim_set_hl(0, 'Cursor', { bg = '#000000', fg = '#ffffff' })
 
 -- set highlight colours
 vim.cmd('hi Visual guibg=Black gui=none')
-vim.cmd('hi MatchParen guibg=White')
+-- vim.cmd('hi MatchParen guibg=White')
 vim.cmd('hi Search guibg=#FEFFA7')
 -- vim.cmd('hi CursorLineNr guibg=White')
 vim.cmd('hi ColorColumn guibg=Black')
