@@ -62,14 +62,17 @@ vim.api.nvim_create_autocmd('TextYankPost',
 -- vim.diagnostic.config({ virtual_lines = true })
 vim.diagnostic.config({ virtual_text = true })
 
+vim.cmd("colorscheme rose-pine")
+
 -- transparent background
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, 'CursorLine', { link = 'Visual' })
+vim.api.nvim_set_hl(0, 'Cursor', { bg = '#000000', fg = '#ffffff' })
 
 -- set highlight colours
 vim.cmd('hi Visual guibg=Black gui=none')
--- vim.cmd('hi MatchParen guibg=#82aaff')
+vim.cmd('hi MatchParen guibg=White')
 vim.cmd('hi Search guibg=#FEFFA7')
 -- vim.cmd('hi CursorLineNr guibg=White')
 vim.cmd('hi ColorColumn guibg=Black')
@@ -111,8 +114,6 @@ vim.opt.foldnestmax = 4
 
 vim.opt.rnu = true
 vim.opt.nu = true
-
-vim.cmd("colorscheme rose-pine")
 
 vim.g.rustaceanvim = {
 	tools = {
