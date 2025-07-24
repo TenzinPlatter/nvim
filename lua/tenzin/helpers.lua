@@ -48,4 +48,19 @@ function M.show_hover_in_function_params()
 	end
 end
 
+-- Only show cursorline in the active window
+vim.api.nvim_create_augroup("CursorLineOnlyInActiveWindow", { clear = true })
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+  group = "CursorLineOnlyInActiveWindow",
+  callback = function()
+    vim.opt_local.cursorline = true
+  end,
+})
+vim.api.nvim_create_autocmd("WinLeave", {
+  group = "CursorLineOnlyInActiveWindow",
+  callback = function()
+    vim.opt_local.cursorline = false
+  end,
+})
+
 return M
