@@ -68,7 +68,7 @@ vim.cmd("colorscheme rose-pine")
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, 'CursorLine', { link = 'Visual' })
-vim.api.nvim_set_hl(0, 'Cursor', { bg = '#000000', fg = '#ffffff' })
+vim.api.nvim_set_hl(0, 'Cursor', { bg = '#666666', fg = '#ffffff' })
 
 -- set highlight colours
 vim.cmd('hi Visual guibg=Black gui=none')
