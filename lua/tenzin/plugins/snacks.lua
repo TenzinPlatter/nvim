@@ -25,7 +25,7 @@ return {
 				files = { hidden = true, ignored = false },
 			},
 			hidden = false,
-			ignored = true,
+			ignored = false,
 			exclude = {
 				".git",
 				"node_modules",
