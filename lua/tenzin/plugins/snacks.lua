@@ -33,6 +33,7 @@ return {
 				"target",
 				"install",
 				"build",
+				"log",
 			},
 		},
 		quickfile = { enabled = true },
