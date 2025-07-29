@@ -24,7 +24,7 @@ return {
 			sources = {
 				files = { hidden = true, ignored = false },
 			},
-			hidden = false,
+			hidden = true,
 			ignored = false,
 			exclude = {
 				".git",
