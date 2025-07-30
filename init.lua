@@ -1,4 +1,4 @@
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -19,7 +19,7 @@ require("tenzin.remaps")
 require("tenzin.helpers")
 
 -- colorizer has to be setup after
-require('colorizer').setup()
+require("colorizer").setup()
 
 -- disable deprecated messages on startup
 vim.deprecate = function() end
@@ -28,35 +28,34 @@ vim.deprecate = function() end
 -- remove space below to comment out autosave while editing config
 --[[
 vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-	pattern = "*",
-	nested = true,
-	callback = function()
-		if vim.bo.buftype ~= "" then
-			return
-		end
+  pattern = "*",
+  nested = true,
+  callback = function()
+    if vim.bo.buftype ~= "" then
+      return
+    end
 
-		if vim.bo.modifiable then
-			vim.cmd("w")
-			-- vim.lsp.buf.format({ bufnr = 0, async = false })
-		end
-	end,
+    if vim.bo.modifiable then
+      vim.cmd("w")
+      -- vim.lsp.buf.format({ bufnr = 0, async = false })
+    end
+  end,
 })
 -- ]]
 
 -- Highlight Yanked area
-vim.api.nvim_create_autocmd('TextYankPost',
-	{
-		group = vim.api.nvim_create_augroup('highlight_yank', {}),
-		desc = 'Highlight selection on yank',
-		pattern = '*',
-		callback = function()
-			vim.highlight.on_yank {
-				higroup = 'Visual',
-				timeout = 300,
-				on_visual = false
-			}
-		end,
-	})
+vim.api.nvim_create_autocmd("TextYankPost", {
+	group = vim.api.nvim_create_augroup("highlight_yank", {}),
+	desc = "Highlight selection on yank",
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "Visual",
+			timeout = 300,
+			on_visual = false,
+		})
+	end,
+})
 
 -- inline diagnositcs
 -- vim.diagnostic.config({ virtual_lines = true })
@@ -67,15 +66,15 @@ vim.cmd("colorscheme rose-pine")
 -- transparent background
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-vim.api.nvim_set_hl(0, 'CursorLine', { bg = 'Black' })
+vim.api.nvim_set_hl(0, "CursorLine", { bg = "Black" })
 -- vim.api.nvim_set_hl(0, 'Cursor', { bg = '#666666', fg = '#ffffff' })
 
 -- set highlight colours
 vim.api.nvim_set_hl(0, "Visual", { bg = "#666666" })
 -- vim.cmd('hi MatchParen guibg=White')
-vim.cmd('hi Search guibg=#FEFFA7')
+vim.cmd("hi Search guibg=#FEFFA7")
 -- vim.cmd('hi CursorLineNr guibg=White')
-vim.cmd('hi ColorColumn guibg=Black')
+vim.cmd("hi ColorColumn guibg=Black")
 
 -- disables netrw
 vim.g.loaded_netrw = 1
@@ -115,28 +114,11 @@ vim.opt.foldnestmax = 4
 vim.opt.rnu = true
 vim.opt.nu = true
 
--- Enable OSC 52 clipboard
-vim.g.clipboard = {
-  name = 'OSC 52',
-  copy = {
-    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
-  },
-  paste = {
-    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
-    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
-  },
-}
-
--- Set clipboard to use system clipboard
-vim.opt.clipboard = 'unnamedplus'
-
 vim.g.rustaceanvim = {
-	tools = {
-	},
+	tools = {},
 	server = {
 		on_attach = function(_client, _bufnr)
-			vim.keymap.set('n', '<leader>th', function()
+			vim.keymap.set("n", "<leader>th", function()
 				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 
 				if vim.lsp.inlay_hint.is_enabled() then
@@ -149,8 +131,7 @@ vim.g.rustaceanvim = {
 		default_settings = {
 			-- rust-analyzer language server configuration
 			-- needs to be empty for rustaceanvim plugin
-			['rust-analyzer'] = {
-			},
+			["rust-analyzer"] = {},
 		},
 	},
 }
