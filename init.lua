@@ -115,6 +115,22 @@ vim.opt.foldnestmax = 4
 vim.opt.rnu = true
 vim.opt.nu = true
 
+-- Enable OSC 52 clipboard
+vim.g.clipboard = {
+  name = 'OSC 52',
+  copy = {
+    ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+  },
+  paste = {
+    ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+    ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+  },
+}
+
+-- Set clipboard to use system clipboard
+vim.opt.clipboard = 'unnamedplus'
+
 vim.g.rustaceanvim = {
 	tools = {
 	},
