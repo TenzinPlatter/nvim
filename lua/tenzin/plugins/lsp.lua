@@ -30,7 +30,6 @@ return {
     opts = {
       ensure_installed = {
         "pyright",
-        "black",
         "clangd",
       }
     },
