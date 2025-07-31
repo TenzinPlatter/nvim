@@ -12,6 +12,13 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+-- Map 'a' to work with angle brackets in operator-pending mode
+vim.keymap.set('o', 'ia', 'i<', { desc = 'inside angle brackets' })
+vim.keymap.set('o', 'aa', 'a<', { desc = 'around angle brackets' })
+
+-- Also add visual mode mappings for consistency
+vim.keymap.set('x', 'ia', 'i<', { desc = 'inside angle brackets' })
+vim.keymap.set('x', 'aa', 'a<', { desc = 'around angle brackets' })
 vim.keymap.set("n", "zi", "za")
 
 vim.keymap.set("n", "<C-S>", function()
