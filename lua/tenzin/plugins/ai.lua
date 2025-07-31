@@ -20,7 +20,8 @@ return {
 			vim.cmd("silent! Copilot disable")
 		end,
 		keys = {
-			{"<leader>ai", function() vim.cmd("Copilot toggle") end, desc = "Toggle copilot"}
+			{"<leader>aie", function() vim.cmd("Copilot enable") end, desc = "Enable copilot"},
+			{"<leader>aid", function() vim.cmd("Copilot disable") end, desc = "Disable copilot"},
 		}
 	},
 	{
