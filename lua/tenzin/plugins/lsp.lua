@@ -27,6 +27,12 @@ return {
       "neovim/nvim-lspconfig",
       "mason-org/mason.nvim",
     },
-    opts = {},
+    opts = {
+      ensure_installed = {
+        "pyright",
+        "black",
+        "clangd",
+      }
+    },
   },
 }
