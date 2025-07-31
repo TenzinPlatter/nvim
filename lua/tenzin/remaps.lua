@@ -12,6 +12,11 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.keymap.del("n", "grr")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gri")
+
 -- Map 'a' to work with angle brackets in operator-pending mode
 vim.keymap.set('o', 'ia', 'i<', { desc = 'inside angle brackets' })
 vim.keymap.set('o', 'aa', 'a<', { desc = 'around angle brackets' })
