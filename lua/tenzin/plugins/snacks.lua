@@ -24,6 +24,7 @@ return {
 			sources = {
 				files = { hidden = true, ignored = false },
 			},
+			follow = true,
 			hidden = true,
 			ignored = false,
 			exclude = {
@@ -88,7 +89,7 @@ return {
 		{
 			"<leader>ff",
 			function()
-				Snacks.picker.files({ignored = false})
+				Snacks.picker.files({ignored = false, follow = true})
 			end,
 			desc = "Find Files",
 		},
