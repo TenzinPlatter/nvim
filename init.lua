@@ -96,7 +96,7 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.colorcolumn = "80"
-vim.opt.mouse = ""
+vim.opt.mouse = "a"
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.linebreak = true
