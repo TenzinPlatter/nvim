@@ -29,8 +29,9 @@ return {
     },
     opts = {
       ensure_installed = {
-        "pyright",
         "clangd",
+        "ruff",
+        "pyrefly",
       }
     },
   },
