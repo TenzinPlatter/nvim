@@ -103,7 +103,6 @@ vim.keymap.set("i", ">", function()
         return ">"
     end
 end, { expr = true, desc = "Move over existing >" })
-
 vim.keymap.set('n', 'gf', function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
@@ -141,8 +140,88 @@ vim.keymap.set('n', 'gf', function()
   
   -- If no markdown link found, fall back to regular detection
   if not filepath then
-    -- ... (rest of the regular detection code)
+    local cword = vim.fn.expand('<cWORD>')
+    
+    -- Try different patterns for line/column specification
+    filepath, line_num, col_num = cword:match("([^:,]+):(%d+)[,:;](%d+)")
+    
+    if not filepath then
+      filepath, line_num = cword:match("([^:,]+):(%d+)")
+    end
+    
+    if not filepath then
+      filepath, line_num, col_num = cword:match("([^#]+)#L(%d+),(%d+)")
+    end
+    
+    if not filepath then
+      filepath, line_num = cword:match("([^#]+)#L(%d+)")
+    end
+    
+    if not filepath then
+      filepath, line_num, col_num = cword:match("([^%(]+)%((%d+),(%d+)%)")
+    end
+    
+    if not filepath then
+      filepath, line_num = cword:match("([^%(]+)%((%d+)%)")
+    end
+    
+    if not filepath then
+      local cfile = vim.fn.expand('<cfile>')
+      filepath = cfile:gsub('#.*$', '')
+    end
   end
   
-  -- ... (rest of the file opening code)
-end)
+  if not filepath then
+    print("No file path found")
+    return
+  end
+  
+  -- Clean up filepath
+  filepath = filepath:gsub('^file://', '')
+  filepath = filepath:gsub('^["\']', '')
+  filepath = filepath:gsub('["\']$', '')
+  filepath = filepath:gsub('#.*$', '')
+  
+  print("Cleaned filepath:", filepath) -- Debug
+  
+  -- Try to find the file
+  local full_path = filepath
+  
+  if not filepath:match('^/') and not filepath:match('^[A-Za-z]:') then
+    local current_dir = vim.fn.expand('%:p:h')
+    local relative_path = current_dir .. '/' .. filepath
+    
+    if vim.fn.filereadable(relative_path) == 1 then
+      full_path = relative_path
+    else
+      local found = vim.fn.findfile(filepath)
+      if found ~= '' then
+        full_path = found
+      end
+    end
+  end
+  
+  print("Attempting to open:", full_path) -- Debug
+  if line_num then
+    print("Jump to line:", line_num, "column:", col_num or "0")
+  end
+  
+  if vim.fn.filereadable(full_path) == 1 then
+    vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
+    
+    if line_num then
+      local target_line = tonumber(line_num)
+      local target_col = col_num and (tonumber(col_num) - 1) or 0
+      
+      local total_lines = vim.api.nvim_buf_line_count(0)
+      if target_line > total_lines then
+        target_line = total_lines
+      end
+      
+      vim.api.nvim_win_set_cursor(0, {target_line, target_col})
+      vim.cmd('normal! zz')
+    end
+  else
+    print("File not found:", full_path)
+  end
+end, { desc = "Go to file with line/column number support" })
