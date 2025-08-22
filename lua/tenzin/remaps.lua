@@ -103,3 +103,27 @@ vim.keymap.set("i", ">", function()
         return ">"
     end
 end, { expr = true, desc = "Move over existing >" })
+
+-- Override gx to handle file:// URIs with line numbers
+vim.keymap.set('n', 'gx', function()
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
+  
+  -- Pattern to match file:// links with optional line/column info
+  local pattern = "file://([^%)#]+)#?L?(%d*),?(%d*)"
+  local filepath, line_num, col_num = line:match(pattern)
+  
+  if filepath then
+    -- Convert to relative path if needed
+    local cmd = "edit " .. filepath
+    vim.cmd(cmd)
+    
+    -- Jump to line/column if specified
+    if line_num and line_num ~= "" then
+      vim.api.nvim_win_set_cursor(0, {tonumber(line_num), tonumber(col_num) - 1 or 0})
+    end
+  else
+    -- Fall back to default gx behavior
+    vim.cmd("normal! gx")
+  end
+end, { desc = "Open file link under cursor" })
