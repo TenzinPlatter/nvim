@@ -104,38 +104,102 @@ vim.keymap.set("i", ">", function()
     end
 end, { expr = true, desc = "Move over existing >" })
 
--- Override gx to handle file:// URIs with line numbers
-vim.keymap.set('n', 'gx', function()
+vim.keymap.set('n', 'gf', function()
+  local cfile = vim.fn.expand('<cfile>')
   local line = vim.api.nvim_get_current_line()
-  local col = vim.api.nvim_win_get_cursor(0)[2] + 1
   
-  -- More specific pattern for your format: file:///path#L21,7
-  local filepath, line_num, col_num = line:match("file://([^%)#]+)#L(%d+),(%d+)")
+  -- Get the word/filename under cursor with more context
+  local cword = vim.fn.expand('<cWORD>')
+  
+  local filepath, line_num, col_num
+  
+  -- Try different patterns for line/column specification
+  -- Pattern 1: file.py:123:45 or file.py:123,45
+  filepath, line_num, col_num = cword:match("([^:,]+):(%d+)[,:;](%d+)")
   
   if not filepath then
-    -- Try simpler pattern without column: file:///path#L21
-    filepath, line_num = line:match("file://([^%)#]+)#L(%d+)")
+    -- Pattern 2: file.py:123
+    filepath, line_num = cword:match("([^:,]+):(%d+)")
   end
   
   if not filepath then
-    -- Try even simpler: file:///path
-    filepath = line:match("file://([^%)#]+)")
+    -- Pattern 3: file.py#L123,45 (like your markdown links)
+    filepath, line_num, col_num = cword:match("([^#]+)#L(%d+),(%d+)")
   end
   
-  if filepath then
-    -- Open the file
-    vim.cmd("edit " .. filepath)
+  if not filepath then
+    -- Pattern 4: file.py#L123
+    filepath, line_num = cword:match("([^#]+)#L(%d+)")
+  end
+  
+  if not filepath then
+    -- Pattern 5: file.py(123,45) - some IDEs use this format
+    filepath, line_num, col_num = cword:match("([^%(]+)%((%d+),(%d+)%)")
+  end
+  
+  if not filepath then
+    -- Pattern 6: file.py(123) 
+    filepath, line_num = cword:match("([^%(]+)%((%d+)%)")
+  end
+  
+  if not filepath then
+    -- Fallback to just the filename (but clean it first)
+    filepath = cfile:gsub('#.*$', '') -- Remove everything after #
+  end
+  
+  -- Clean up filepath (remove quotes, file:// prefix, etc.)
+  filepath = filepath:gsub('^file://', '')
+  filepath = filepath:gsub('^["\']', '')
+  filepath = filepath:gsub('["\']$', '')
+  -- IMPORTANT: Remove any remaining # fragments
+  filepath = filepath:gsub('#.*$', '')
+  
+  -- Try to find the file
+  local full_path = filepath
+  
+  -- If it's not an absolute path, try to find it
+  if not filepath:match('^/') and not filepath:match('^[A-Za-z]:') then
+    -- Try relative to current file
+    local current_dir = vim.fn.expand('%:p:h')
+    local relative_path = current_dir .. '/' .. filepath
+    
+    if vim.fn.filereadable(relative_path) == 1 then
+      full_path = relative_path
+    else
+      -- Try using Vim's built-in file finding
+      local found = vim.fn.findfile(filepath)
+      if found ~= '' then
+        full_path = found
+      end
+    end
+  end
+  
+  -- Debug output (remove this after testing)
+  print("Attempting to open:", full_path)
+  if line_num then
+    print("Jump to line:", line_num, "column:", col_num or "0")
+  end
+  
+  -- Check if file exists
+  if vim.fn.filereadable(full_path) == 1 then
+    vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
     
     -- Jump to line and column if specified
     if line_num then
       local target_line = tonumber(line_num)
       local target_col = col_num and (tonumber(col_num) - 1) or 0
+      
+      -- Make sure line number is valid
+      local total_lines = vim.api.nvim_buf_line_count(0)
+      if target_line > total_lines then
+        target_line = total_lines
+      end
+      
       vim.api.nvim_win_set_cursor(0, {target_line, target_col})
-      -- Center the line on screen
-      vim.cmd("normal! zz")
+      vim.cmd('normal! zz')
     end
   else
-    -- Fall back to default gx behavior for non-file links
-    vim.fn['netrw#BrowseX'](vim.fn.expand('<cWORD>'), 0)
+    print("File not found:", full_path)
+    -- You could fall back to default gf here, but it might have the same issue
   end
-end, { desc = "Open file link under cursor with line/column support" })
+end, { desc = "Go to file with line/column number support" })
