@@ -109,21 +109,33 @@ vim.keymap.set('n', 'gx', function()
   local line = vim.api.nvim_get_current_line()
   local col = vim.api.nvim_win_get_cursor(0)[2] + 1
   
-  -- Pattern to match file:// links with optional line/column info
-  local pattern = "file://([^%)#]+)#?L?(%d*),?(%d*)"
-  local filepath, line_num, col_num = line:match(pattern)
+  -- More specific pattern for your format: file:///path#L21,7
+  local filepath, line_num, col_num = line:match("file://([^%)#]+)#L(%d+),(%d+)")
+  
+  if not filepath then
+    -- Try simpler pattern without column: file:///path#L21
+    filepath, line_num = line:match("file://([^%)#]+)#L(%d+)")
+  end
+  
+  if not filepath then
+    -- Try even simpler: file:///path
+    filepath = line:match("file://([^%)#]+)")
+  end
   
   if filepath then
-    -- Convert to relative path if needed
-    local cmd = "edit " .. filepath
-    vim.cmd(cmd)
+    -- Open the file
+    vim.cmd("edit " .. filepath)
     
-    -- Jump to line/column if specified
-    if line_num and line_num ~= "" then
-      vim.api.nvim_win_set_cursor(0, {tonumber(line_num), tonumber(col_num) - 1 or 0})
+    -- Jump to line and column if specified
+    if line_num then
+      local target_line = tonumber(line_num)
+      local target_col = col_num and (tonumber(col_num) - 1) or 0
+      vim.api.nvim_win_set_cursor(0, {target_line, target_col})
+      -- Center the line on screen
+      vim.cmd("normal! zz")
     end
   else
-    -- Fall back to default gx behavior
-    vim.cmd("normal! gx")
+    -- Fall back to default gx behavior for non-file links
+    vim.fn['netrw#BrowseX'](vim.fn.expand('<cWORD>'), 0)
   end
-end, { desc = "Open file link under cursor" })
+end, { desc = "Open file link under cursor with line/column support" })

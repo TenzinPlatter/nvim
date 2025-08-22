@@ -77,8 +77,8 @@ vim.cmd("hi Search guibg=#FEFFA7")
 vim.cmd("hi ColorColumn guibg=Black")
 
 -- disables netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 -- set nvim tree background transparent
 vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")
