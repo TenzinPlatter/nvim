@@ -82,6 +82,7 @@ vim.cmd("hi ColorColumn guibg=Black")
 
 -- set nvim tree background transparent
 vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")
+vim.cmd("set mouse=")
 
 -- for obsidian.nvim
 vim.opt.conceallevel = 1
