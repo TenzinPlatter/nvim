@@ -5,7 +5,7 @@ return {
       lsp_format = "fallback",
     },
     formatters_by_ft = {
-      -- python = { "ruff" },
+      python = { "ruff_fmt" },
       c = { "clang-format" },
       cpp = { "clang-format" },
       lua = { "stylua" },
