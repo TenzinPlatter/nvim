@@ -5,7 +5,7 @@ return {
       lsp_format = "fallback",
     },
     formatters_by_ft = {
-      python = { "ruff_fmt" },
+      python = { "ruff_format" },
       c = { "clang-format" },
       cpp = { "clang-format" },
       lua = { "stylua" },
@@ -13,6 +13,11 @@ return {
       rust = { "rustfmt" },
       ts = { "prettier" },
       js = { "prettier" },
+    },
+    formatters = {
+      ruff_format = {
+        args = { "format", "--line-length", "99", "--stdin-filename", "$FILENAME", "-" },
+      }
     },
   },
   keys = {
