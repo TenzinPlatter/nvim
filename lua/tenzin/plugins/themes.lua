@@ -5,7 +5,7 @@ return {
 			require("kanagawa").setup({
 				transparent = true,
 			})
-		end
+		end,
 	},
 	{
 		"https://github.com/rose-pine/neovim",
@@ -17,16 +17,16 @@ return {
 					transparency = true,
 					bold = false,
 					italic = false,
-				}
+				},
 			})
-		end
+		end,
 	},
 	{
 		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
 		opts = {
-			transparent_mode = true
-		}
+			transparent_mode = true,
+		},
 	},
 	{
 		"https://github.com/aktersnurra/no-clown-fiesta.nvim",
@@ -34,7 +34,7 @@ return {
 			require("no-clown-fiesta").setup({
 				transparent = true,
 			})
-		end
+		end,
 	},
 	{
 		"catppuccin/nvim",
@@ -44,7 +44,7 @@ return {
 			require("catppuccin").setup({
 				transparent_background = true,
 			})
-		end
+		end,
 	},
 	{
 		"https://github.com/folke/tokyonight.nvim",
@@ -53,15 +53,15 @@ return {
 				style = "storm",
 				transparent = true,
 			})
-		end
+		end,
 	},
 	{
 		"https://github.com/projekt0n/github-nvim-theme",
 		config = function()
 			require("github-theme").setup({
-				options = { transparent = true, }
+				options = { transparent = true },
 			})
-		end
+		end,
 	},
 	{
 		"EdenEast/nightfox.nvim",
@@ -71,6 +71,14 @@ return {
 					transparent = true,
 				},
 			})
-		end
+		end,
+	},
+	{
+		"vague2k/huez.nvim",
+		-- if you want registry related features, uncomment this
+		import = "huez-manager.import",
+		branch = "stable",
+		event = "UIEnter",
+    opts = {},
 	},
 }
