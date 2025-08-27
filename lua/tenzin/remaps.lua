@@ -33,7 +33,7 @@ vim.keymap.set("n", "j", "gj")
 vim.keymap.set("n", "k", "gk")
 
 -- paste in insert from unnamed register
-vim.keymap.set("i", "<C-f>", '<C-r>"')
+vim.keymap.set("i", "<C-t>", '<C-r>"')
 
 -- clears highlight left after searching
 vim.keymap.set("n", "<C-c>", function()
