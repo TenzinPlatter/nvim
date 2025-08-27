@@ -15,6 +15,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("tenzin.plugins", {})
+local files = {"remaps", "helpers", "autocmds", "opts"}
+
+for file in files do
+  require("tenzin." .. file)
+end
+
 require("tenzin.remaps")
 require("tenzin.helpers")
 
