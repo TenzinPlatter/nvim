@@ -15,17 +15,9 @@ return {
 			vim.keymap.del("n", "gri")
 		end,
 		keys = {
+			-- NOTE: references, definition, implementation is done in snacks
 			{ "<leader>r", vim.lsp.buf.rename, desc = "Rename symbol under cursor" },
 			{ "<leader>ca", vim.lsp.buf.code_action, desc = "Show code actions" },
-			{ "gd", vim.lsp.buf.definition, desc = "Go to definition" },
-			{ "gi", vim.lsp.buf.implementation, desc = "Go to implementation" },
-			{
-				"gr",
-				function()
-					require("telescope.builtin").lsp_references()
-				end,
-				desc = "Show references with Telescope",
-			},
 			{ "K", vim.lsp.buf.hover, desc = "Show hover documentation" },
 		},
 	},
