@@ -92,14 +92,3 @@ vim.keymap.set("n", "ZZ", ":wqa<CR>")
 vim.keymap.set("i", "<C-u>", function()
   require("tenzin.helpers").show_hover_in_function_params()
 end)
-
-vim.keymap.set("i", ">", function()
-    local col = vim.fn.col(".")
-    local line = vim.fn.getline(".")
-    -- Only move right if there's already a > at cursor position
-    if line:sub(col, col) == ">" then
-        return "<Right>"
-    else
-        return ">"
-    end
-end, { expr = true, desc = "Move over existing >" })

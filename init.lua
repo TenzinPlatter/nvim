@@ -3,14 +3,14 @@ vim.opt.termguicolors = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
-		lazypath,
-	})
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -23,40 +23,6 @@ require("colorizer").setup()
 
 -- disable deprecated messages on startup
 vim.deprecate = function() end
-
--- Autosave on exit of insert if text has been changed
--- remove space below to comment out autosave while editing config
---[[
-vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
-  pattern = "*",
-  nested = true,
-  callback = function()
-    if vim.bo.buftype ~= "" then
-      return
-    end
-
-    if vim.bo.modifiable then
-      vim.cmd("w")
-      -- vim.lsp.buf.format({ bufnr = 0, async = false })
-    end
-  end,
-})
--- ]]
-
--- Highlight Yanked area
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("highlight_yank", {}),
-	desc = "Highlight selection on yank",
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "Visual",
-			timeout = 300,
-			on_visual = false,
-		})
-	end,
-})
-
 -- inline diagnositcs
 -- vim.diagnostic.config({ virtual_lines = true })
 vim.diagnostic.config({ virtual_text = true })
@@ -113,25 +79,3 @@ vim.opt.foldnestmax = 4
 
 vim.opt.rnu = true
 vim.opt.nu = true
-
-vim.g.rustaceanvim = {
-	tools = {},
-	server = {
-		on_attach = function(_client, _bufnr)
-			vim.keymap.set("n", "<leader>th", function()
-				vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
-
-				if vim.lsp.inlay_hint.is_enabled() then
-					print("Enabled inlay hints")
-				else
-					print("Disabled inlay hints")
-				end
-			end)
-		end,
-		default_settings = {
-			-- rust-analyzer language server configuration
-			-- needs to be empty for rustaceanvim plugin
-			["rust-analyzer"] = {},
-		},
-	},
-}
