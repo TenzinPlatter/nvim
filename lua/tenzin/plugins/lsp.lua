@@ -7,7 +7,16 @@ return {
       lspconfig.clangd.setup({
         cmd = { "clangd", "--header-insertion=never" },
       })
+
+      -- delete default lsp keybinds
+      vim.keymap.del("n", "grr")
+      vim.keymap.del("n", "gra")
+      vim.keymap.del("n", "grn")
+      vim.keymap.del("n", "gri")
     end,
+    keys = {
+
+    }
   },
   {
     "mason-org/mason.nvim",

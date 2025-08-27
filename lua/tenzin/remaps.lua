@@ -5,17 +5,6 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gi", vim.lsp.buf.implementation)
 vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references)
 vim.keymap.set("n", "K", vim.lsp.buf.hover)
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = {"c", "h", "cpp", "hpp"},
-  callback = function()
-    vim.keymap.set('n', '<leader>sh', ':ClangdSwitchSourceHeader<CR>', { buffer = true })
-  end,
-})
-
-vim.keymap.del("n", "grr")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gri")
 
 -- Map 'a' to work with angle brackets in operator-pending mode
 vim.keymap.set('o', 'ia', 'i<', { desc = 'inside angle brackets' })

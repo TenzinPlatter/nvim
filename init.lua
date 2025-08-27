@@ -17,14 +17,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("tenzin.plugins", {})
 local files = {"remaps", "helpers", "autocmds", "opts"}
 
-for file in files do
+for _, file in ipairs(files) do
   require("tenzin." .. file)
 end
 
-require("tenzin.remaps")
-require("tenzin.helpers")
-
--- colorizer has to be setup after
+-- colorizer has to be setup after other plugins
 require("colorizer").setup()
 
 -- set highlight colours
@@ -33,10 +30,6 @@ vim.api.nvim_set_hl(0, "Visual", { bg = "#666666" })
 vim.cmd("hi Search guibg=#FEFFA7")
 -- vim.cmd('hi CursorLineNr guibg=White')
 vim.cmd("hi ColorColumn guibg=Black")
-
--- disables netrw
--- vim.g.loaded_netrw = 1
--- vim.g.loaded_netrwPlugin = 1
 
 -- set nvim tree background transparent
 vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")

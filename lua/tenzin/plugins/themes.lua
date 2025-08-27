@@ -79,6 +79,15 @@ return {
 		import = "huez-manager.import",
 		branch = "stable",
 		event = "UIEnter",
-    opts = {},
+		opts = {},
+		keys = {
+			{
+				"<leader>tp",
+				function()
+					vim.cmd("Huez")
+				end,
+				desc = "Theme picker",
+			},
+		},
 	},
 }
