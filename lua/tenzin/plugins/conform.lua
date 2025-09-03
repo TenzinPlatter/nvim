@@ -13,6 +13,9 @@ return {
       rust = { "rustfmt" },
       ts = { "prettier" },
       js = { "prettier" },
+      sh = { "beautysh" },
+      bash = { "beautysh" },
+      zsh = { "beautysh" },
     },
     formatters = {
       ruff_format = {
