@@ -31,6 +31,7 @@
   "nvim-colorizer.lua": { "branch": "master", "commit": "a065833f35a3a7cc3ef137ac88b5381da2ba302e" },
   "nvim-dev-container": { "branch": "main", "commit": "664d31ed0f71f0ca7c6cf1dead281bc157d7d858" },
   "nvim-emmet": { "branch": "main", "commit": "cde4fb2968704aae5c18b7f8a9bc2508767bb78d" },
+  "nvim-jdtls": { "branch": "master", "commit": "3b9df08323d832f2980b8425ea6812debc8082b7" },
   "nvim-lspconfig": { "branch": "master", "commit": "f47cd681d7cb6048876a2e908b6d8ba1e530d152" },
   "nvim-prose": { "branch": "main", "commit": "38aac8c9c94a5725d152bdfea374d60e07fb93d6" },
   "nvim-rip-substitute": { "branch": "main", "commit": "9718e040e3593608eb0654cf643be4982d68bb46" },
