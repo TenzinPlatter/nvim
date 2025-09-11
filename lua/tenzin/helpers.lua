@@ -63,4 +63,37 @@ vim.api.nvim_create_autocmd("WinLeave", {
   end,
 })
 
+function M.insert_self()
+  local filetype = vim.bo.filetype
+  local self_ref = ""
+  
+  if filetype == "cpp" or filetype == "c" then
+    self_ref = "this->"
+  elseif filetype == "python" then
+    self_ref = "self."
+  elseif filetype == "javascript" or filetype == "typescript" or filetype == "javascriptreact" or filetype == "typescriptreact" then
+    self_ref = "this."
+  elseif filetype == "java" or filetype == "kotlin" then
+    self_ref = "this."
+  elseif filetype == "csharp" then
+    self_ref = "this."
+  elseif filetype == "rust" then
+    self_ref = "self."
+  elseif filetype == "go" then
+    self_ref = "self."
+  elseif filetype == "ruby" then
+    self_ref = "self."
+  elseif filetype == "php" then
+    self_ref = "$this->"
+  elseif filetype == "swift" then
+    self_ref = "self."
+  elseif filetype == "lua" then
+    self_ref = "self."
+  else
+    self_ref = "self."
+  end
+  
+  vim.api.nvim_put({self_ref}, "c", false, true)
+end
+
 return M
