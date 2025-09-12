@@ -17,6 +17,7 @@ return {
 			options = {
 				globalstatus = true,
 			},
+			globalstatus = true,
 		},
 	},
 	{
