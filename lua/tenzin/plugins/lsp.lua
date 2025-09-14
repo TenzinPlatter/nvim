@@ -41,9 +41,6 @@ return {
 		},
 		opts = {
 			ensure_installed = {
-				"clangd",
-				"ruff",
-				"pyrefly",
 			},
 		},
 	},

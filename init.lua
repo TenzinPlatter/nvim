@@ -15,10 +15,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("tenzin.plugins", {})
-local files = {"remaps", "helpers", "autocmds", "opts"}
 
-for _, file in ipairs(files) do
-  require("tenzin." .. file)
+local lua_files = vim.fn.glob(vim.fn.stdpath("config") .. "/lua/tenzin/*.lua", false, true)
+for _, file_path in ipairs(lua_files) do
+  local file_name = vim.fn.fnamemodify(file_path, ":t:r")
+  require("tenzin." .. file_name)
 end
 
 -- colorizer has to be setup after other plugins
@@ -32,5 +33,6 @@ vim.cmd("hi Search guibg=#FEFFA7")
 vim.cmd("hi ColorColumn guibg=Black")
 
 -- set nvim tree background transparent
-vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")
+-- vim.cmd("hi NvimTreeNormal guibg=None ctermbg=None")
+
 vim.cmd("set mouse=n")

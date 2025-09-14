@@ -114,6 +114,24 @@ return {
 			end,
 			desc = "Recent",
 		},
+		{
+			"<leader>fc",
+			function()
+				Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+			end,
+			desc = "Find Config Files",
+		},
+		{
+			"<leader>fd",
+			function()
+				local dir = vim.fn.input("Directory: ", vim.fn.getcwd() .. "/", "dir")
+				if dir ~= "" then
+					vim.cmd("cd " .. vim.fn.fnameescape(dir))
+					Snacks.picker.files()
+				end
+			end,
+			desc = "Change Directory and Find Files",
+		},
 		-- git
 		{
 			"<leader>gb",
@@ -316,6 +334,13 @@ return {
 		},
 		{
 			"<leader>sq",
+			function()
+				Snacks.picker.qflist()
+			end,
+			desc = "Quickfix List",
+		},
+		{
+			"<leader>fq",
 			function()
 				Snacks.picker.qflist()
 			end,

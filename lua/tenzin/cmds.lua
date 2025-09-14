@@ -37,4 +37,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader>sh', ':ClangdSwitchSourceHeader<CR>', { buffer = true })
   end,
 })
-
