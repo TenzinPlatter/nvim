@@ -35,6 +35,9 @@ end)
 vim.keymap.set("n", "<leader>k", function()
     vim.cmd("cprev")
 end)
+vim.keymap.set("n", "<C-q>", function ()
+    vim.cmd("copen")
+end)
 
 -- Navigate one screen line rather than actual line
 vim.keymap.set("n", "j", "gj")
