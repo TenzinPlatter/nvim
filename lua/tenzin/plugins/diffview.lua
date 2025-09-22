@@ -1,23 +1,56 @@
 return {
 	"https://github.com/sindrets/diffview.nvim",
 	config = function()
-		require('diffview').setup({
-			enhanced_diff_hl = true
+		require("diffview").setup({
+			enhanced_diff_hl = true,
 		})
 
-		vim.api.nvim_set_hl(0, 'DiffAdd', { bg = '#28a745', fg = '#ffffff' })
-		vim.api.nvim_set_hl(0, 'DiffDelete', { bg = '#d73a49', fg = '#ffffff' })
-		vim.api.nvim_set_hl(0, 'DiffChange', { bg = '#ffeaa7', fg = '#000000' })
-		vim.api.nvim_set_hl(0, 'DiffText', { bg = '#fdcb6e', fg = '#000000', bold = true })
+		-- Tokyo Night inspired diff colors for diffview
+		-- Soothing, low-contrast colors that are easy on the eyes
 
-		-- left side text
-		vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = '#d73a49', fg = '#ffffff' })
-		-- right side text
-		vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = '#28a745', fg = '#ffffff' })
+		-- Standard diff highlights with Tokyo Night palette
+		vim.api.nvim_set_hl(0, "DiffAdd", {
+			bg = "#20303b",
+			fg = "#73daca",
+		})
 
-		-- Additional GitHub-style diff highlights
-		vim.api.nvim_set_hl(0, 'diffAdded', { fg = '#28a745' })
-		vim.api.nvim_set_hl(0, 'diffRemoved', { fg = '#d73a49' })
+		vim.api.nvim_set_hl(0, "DiffDelete", {
+			bg = "#2d202a",
+			fg = "#f7768e",
+		})
+
+		vim.api.nvim_set_hl(0, "DiffChange", {
+			bg = "#32344a",
+			fg = "#7dcfff",
+		})
+
+		vim.api.nvim_set_hl(0, "DiffText", {
+			bg = "#394b70",
+			fg = "#c0caf5",
+			bold = true,
+		})
+
+		-- New diffview-specific highlight groups
+		vim.api.nvim_set_hl(0, "DiffviewDiffAddAsDelete", {
+			bg = "#2d202a",
+			fg = "#f7768e",
+		})
+
+		vim.api.nvim_set_hl(0, "DiffviewDiffDelete", {
+			bg = "#1f1f23",
+			fg = "#565f89",
+		})
+
+		-- Additional Tokyo Night diff styling
+		vim.api.nvim_set_hl(0, "diffAdded", { fg = "#9ece6a" })
+		vim.api.nvim_set_hl(0, "diffRemoved", { fg = "#f7768e" })
+		vim.api.nvim_set_hl(0, "diffChanged", { fg = "#7dcfff" })
+
+		-- Line numbers in diff view
+		vim.api.nvim_set_hl(0, "DiffviewStatusLine", {
+			bg = "#1a1b26",
+			fg = "#a9b1d6",
+		})
 		vim.opt.fillchars:append("diff:╱")
 	end,
 }
