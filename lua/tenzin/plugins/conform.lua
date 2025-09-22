@@ -16,6 +16,7 @@ return {
       sh = { "beautysh" },
       bash = { "beautysh" },
       zsh = { "beautysh" },
+      tsx = { "prettier" },
     },
     formatters = {
       ruff_format = {
