@@ -19,7 +19,7 @@ return {
     },
     formatters = {
       ruff_format = {
-        args = { "format", "--line-length", "99", "--stdin-filename", "$FILENAME", "-" },
+        args = { "format", "--stdin-filename", "$FILENAME", "-" },
       }
     },
   },
