@@ -2,9 +2,9 @@ return {
 	{
 		"neovim/nvim-lspconfig",
 		config = function()
-			local lspconfig = require("lspconfig")
+			local lspconfig = vim.lsp.config
 
-			lspconfig.clangd.setup({
+			lspconfig("clangd",  {
 				cmd = { "clangd", "--header-insertion=never" },
 			})
 
