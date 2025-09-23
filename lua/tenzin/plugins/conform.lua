@@ -12,11 +12,12 @@ return {
       yaml = { "yamlfmt" },
       rust = { "rustfmt" },
       ts = { "prettier" },
-      js = { "prettier" },
-      sh = { "beautysh" },
+      javascript = { "prettier" },
+      javascriptreact = { "prettier" },
+      typescript = { "prettier" },
+      typescriptreact = { "prettier" },
       bash = { "beautysh" },
       zsh = { "beautysh" },
-      tsx = { "prettier" },
     },
     formatters = {
       ruff_format = {
