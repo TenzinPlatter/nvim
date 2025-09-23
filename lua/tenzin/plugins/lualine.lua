@@ -25,6 +25,15 @@ return {
 					lualine_c = { { git_blame.get_current_blame_text, cond = git_blame.is_blame_text_available } },
 					lualine_x = {
 						{ prose.word_count, cond = prose.is_available },
+						{
+							function()
+								local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+								return "LSP:" .. #clients
+							end,
+							cond = function()
+								return #vim.lsp.get_active_clients({ bufnr = 0 }) > 0
+							end,
+						},
 					},
 					lualine_y = { { "filename", path = 1 } },
 				},
