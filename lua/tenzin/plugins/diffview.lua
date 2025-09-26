@@ -13,6 +13,6 @@ return {
 		-- vim.api.nvim_set_hl(0, 'DiffTextAdd', { bg = '#462F2F' })
 		vim.api.nvim_set_hl(0, 'DiffTextAdd', { bg = 'green' })
 		vim.api.nvim_set_hl(0, 'DiffviewDiffAddAsDelete', { bg = 'green'})
-		vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = 'green'})
+		vim.api.nvim_set_hl(0, 'DiffviewDiffDelete', { bg = 'red'})
 	end,
 }
