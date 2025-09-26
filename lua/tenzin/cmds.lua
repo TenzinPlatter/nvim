@@ -34,6 +34,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = {"c", "h", "cpp", "hpp"},
   callback = function()
-    vim.keymap.set('n', '<leader>sh', ':ClangdSwitchSourceHeader<CR>', { buffer = true })
+    vim.keymap.set('n', '<leader>sh', ':LspClangdSwitchSourceHeader<CR>', { buffer = true })
   end,
 })
