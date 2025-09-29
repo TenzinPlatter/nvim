@@ -34,12 +34,12 @@ return {
 			mode = { "n" },
 		},
 		{
-			"<leader>=",
+			"<leader>f",
 			function()
 				require("conform").format({
 					range = {
-						start = vim.fn.line("'<"),
-						["end"] = vim.fn.line("'>"),
+						start = { vim.fn.line("'<"), 0 },
+						["end"] = { vim.fn.line("'>"), 0 },
 					},
 				})
 			end,

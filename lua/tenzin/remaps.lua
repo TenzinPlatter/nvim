@@ -4,7 +4,7 @@ vim.keymap.set("n", "<leader>w", function()
     vim.cmd("wall")
 end)
 
-vim.keymap.set("n", "<leader>q", function()
+vim.keymap.set("n", "ZZ", function()
     vim.cmd("wqa")
 end)
 
