@@ -1,15 +1,17 @@
 vim.keymap.set("n", "zi", "za")
 
+vim.keymap.set("i", "<C-I>", '<C-R>"', { desc = "Paste from '\"' in insert" })
+
 vim.keymap.set("n", "<leader>w", function()
-    vim.cmd("wall")
+	vim.cmd("wall")
 end)
 
 vim.keymap.set("n", "ZZ", function()
-    vim.cmd("wqa")
+	vim.cmd("wqa")
 end)
 
 vim.keymap.set("i", "<C-T>", function()
-    require("tenzin.helpers").insert_self()
+	require("tenzin.helpers").insert_self()
 end, { desc = "Insert self/this reference" })
 
 vim.keymap.set("n", "<C-l>", "xp")
@@ -30,13 +32,13 @@ vim.keymap.set("n", "<leader>p", '"+p')
 
 -- Navigate quick fix list
 vim.keymap.set("n", "<leader>j", function()
-    vim.cmd("cnext")
+	vim.cmd("cnext")
 end)
 vim.keymap.set("n", "<leader>k", function()
-    vim.cmd("cprev")
+	vim.cmd("cprev")
 end)
-vim.keymap.set("n", "<C-q>", function ()
-    vim.cmd("copen")
+vim.keymap.set("n", "<C-q>", function()
+	vim.cmd("copen")
 end)
 
 -- Navigate one screen line rather than actual line
@@ -45,7 +47,7 @@ vim.keymap.set("n", "k", "gk")
 
 -- clears highlight left after searching
 vim.keymap.set("n", "<C-c>", function()
-    vim.cmd("nohlsearch")
+	vim.cmd("nohlsearch")
 end)
 
 -- make the window bigger vertically
@@ -70,5 +72,5 @@ vim.keymap.set("v", ">", ">gv")
 
 -- Show LSP hover for function when cursor is in parameter braces
 vim.keymap.set("i", "<C-u>", function()
-    require("tenzin.helpers").show_hover_in_function_params()
+	require("tenzin.helpers").show_hover_in_function_params()
 end)
