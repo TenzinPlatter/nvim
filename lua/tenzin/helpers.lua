@@ -102,86 +102,81 @@ function M.insert_async_before_function()
   local row = cursor_pos[1] - 1
   local col = cursor_pos[2]
 
-  local parser = vim.treesitter.get_parser(bufnr)
-  if not parser then
-    vim.notify("No tree-sitter parser available", vim.log.levels.ERROR)
-    return
-  end
+  -- Get the 4 characters before the cursor
+  local line_text = vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1]
+  local before_cursor = line_text:sub(math.max(1, col - 3), col)
 
-  local tree = parser:parse()[1]
-  if not tree then
-    vim.notify("Failed to parse tree", vim.log.levels.ERROR)
-    return
-  end
+  -- Check if the 4 characters before cursor are 'awai'
+  if before_cursor == "awai" then
+    local parser = vim.treesitter.get_parser(bufnr)
+    if parser then
+      local tree = parser:parse()[1]
+      if tree then
+        local root = tree:root()
+        local current_node = root:named_descendant_for_range(row, col, row, col)
 
-  local root = tree:root()
-  local current_node = root:named_descendant_for_range(row, col, row, col)
+        if current_node then
+          -- Function node types for different languages
+          local function_node_types = {
+            "function_declaration",
+            "function_definition",
+            "function",
+            "arrow_function",
+            "method_declaration",
+            "method_definition",
+            "function_item",
+            "lambda",
+          }
 
-  if not current_node then
-    vim.notify("No node found at cursor", vim.log.levels.WARN)
-    return
-  end
+          -- Traverse up the tree to find a function node
+          local function_node = current_node
+          while function_node do
+            local node_type = function_node:type()
+            local is_function = false
+            for _, ft in ipairs(function_node_types) do
+              if node_type == ft then
+                is_function = true
+                break
+              end
+            end
+            if is_function then
+              break
+            end
+            function_node = function_node:parent()
+          end
 
-  -- Function node types for different languages
-  local function_node_types = {
-    "function_declaration",
-    "function_definition",
-    "function",
-    "arrow_function",
-    "method_declaration",
-    "method_definition",
-    "function_item",
-    "lambda",
-  }
+          if function_node then
+            -- Get the start position of the function node
+            local start_row, start_col = function_node:start()
 
-  -- Traverse up the tree to find a function node
-  local function_node = current_node
-  while function_node do
-    local node_type = function_node:type()
-    local is_function = false
-    for _, ft in ipairs(function_node_types) do
-      if node_type == ft then
-        is_function = true
-        break
+            -- For most languages, we need to find the 'function' keyword or the start of the declaration
+            -- We'll insert 'async ' at the start of the function node
+            local func_line_text = vim.api.nvim_buf_get_lines(bufnr, start_row, start_row + 1, false)[1]
+
+            -- Find the position to insert 'async'
+            -- Check if 'async' already exists
+            if not (func_line_text:match("^%s*async%s") or func_line_text:match("^%s*export%s+async%s")) then
+              -- Determine insertion position
+              local insert_col = start_col
+              local prefix = func_line_text:sub(1, start_col)
+
+              -- Handle 'export' keyword for JS/TS
+              local export_match = prefix:match("^(%s*export%s+)")
+              if export_match then
+                insert_col = #export_match
+              end
+
+              -- Insert 'async '
+              vim.api.nvim_buf_set_text(bufnr, start_row, insert_col, start_row, insert_col, {"async "})
+            end
+          end
+        end
       end
     end
-    if is_function then
-      break
-    end
-    function_node = function_node:parent()
   end
 
-  if not function_node then
-    vim.notify("Not inside a function", vim.log.levels.WARN)
-    return
-  end
-
-  -- Get the start position of the function node
-  local start_row, start_col = function_node:start()
-
-  -- For most languages, we need to find the 'function' keyword or the start of the declaration
-  -- We'll insert 'async ' at the start of the function node
-  local line_text = vim.api.nvim_buf_get_lines(bufnr, start_row, start_row + 1, false)[1]
-
-  -- Find the position to insert 'async'
-  -- Check if 'async' already exists
-  if line_text:match("^%s*async%s") or line_text:match("^%s*export%s+async%s") then
-    return
-  end
-
-  -- Determine insertion position
-  local insert_col = start_col
-  local prefix = line_text:sub(1, start_col)
-
-  -- Handle 'export' keyword for JS/TS
-  local export_match = prefix:match("^(%s*export%s+)")
-  if export_match then
-    insert_col = #export_match
-  end
-
-  -- Insert 'async '
-  vim.api.nvim_buf_set_text(bufnr, start_row, insert_col, start_row, insert_col, {"async "})
-  vim.notify("Inserted 'async' before function", vim.log.levels.INFO)
+  -- Always insert 't' at cursor position
+  vim.api.nvim_put({"t"}, "c", false, true)
 end
 
 return M
