@@ -3,7 +3,9 @@ return {
   config = function()
     vim.keymap.set({ "n", "v" }, "<leader>l", function()
       require("nvim-emmet").wrap_with_abbreviation()
-      require("conform").format()
+      vim.defer_fn(function()
+        require("conform").format()
+      end, 100)
     end)
   end,
 }
