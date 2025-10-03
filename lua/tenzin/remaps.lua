@@ -8,10 +8,6 @@ end)
 
 vim.keymap.set("n", "ZZ", function()
 	-- Close sidekick window before quitting
-	local sidekick_ok, sidekick = pcall(require, "sidekick.cli")
-	if sidekick_ok then
-		sidekick.close()
-	end
 	vim.cmd("wqa")
 end)
 
@@ -78,4 +74,8 @@ vim.keymap.set("v", ">", ">gv")
 -- Show LSP hover for function when cursor is in parameter braces
 vim.keymap.set("i", "<C-u>", function()
 	require("tenzin.helpers").show_hover_in_function_params()
+end)
+
+vim.keymap.set("i", "t", function()
+	require("tenzin.helpers").insert_async_before_function()
 end)

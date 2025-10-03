@@ -166,7 +166,6 @@ function M.insert_async_before_function()
   -- Find the position to insert 'async'
   -- Check if 'async' already exists
   if line_text:match("^%s*async%s") or line_text:match("^%s*export%s+async%s") then
-    vim.notify("Function is already async", vim.log.levels.INFO)
     return
   end
 
