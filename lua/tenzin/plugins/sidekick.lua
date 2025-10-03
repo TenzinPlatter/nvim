@@ -9,6 +9,12 @@ return {
       },
     },
   },
+  init = function()
+    -- Auto-start Claude Code window in background on startup
+    vim.defer_fn(function()
+      require("sidekick.cli").toggle({ name = "claude", focus = false })
+    end, 100)
+  end,
   -- stylua: ignore
   keys = {
     {

@@ -7,6 +7,11 @@ vim.keymap.set("n", "<leader>w", function()
 end)
 
 vim.keymap.set("n", "ZZ", function()
+	-- Close sidekick window before quitting
+	local sidekick_ok, sidekick = pcall(require, "sidekick.cli")
+	if sidekick_ok then
+		sidekick.close()
+	end
 	vim.cmd("wqa")
 end)
 
