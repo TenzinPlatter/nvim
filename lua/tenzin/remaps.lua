@@ -48,7 +48,7 @@ end)
 vim.keymap.set("n", "<leader>k", function()
 	vim.cmd("cprev")
 end)
-vim.keymap.set("n", "<C-q>", function()
+vim.keymap.set("n", "<leader>qf", function()
 	vim.cmd("copen")
 end)
 
