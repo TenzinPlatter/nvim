@@ -10,16 +10,10 @@ return {
     },
   },
   init = function()
-    -- Auto-start Claude Code session in background on startup
-    vim.defer_fn(function()
-      local State = require("sidekick.cli.state")
-      State.with(function(state)
-        -- Session is started and attached, now hide the terminal
-        if state.terminal then
-          state.terminal:hide()
-        end
-      end, { filter = { name = "claude" }, create = true, show = true, focus = false })
-    end, 100)
+    -- Auto-start Claude Code window in background on startup
+    -- vim.defer_fn(function()
+    --   require("sidekick.cli").toggle({ name = "claude", focus = false })
+    -- end, 100)
   end,
   -- stylua: ignore
   keys = {
