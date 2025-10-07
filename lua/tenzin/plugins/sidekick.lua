@@ -10,10 +10,12 @@ return {
     },
   },
   init = function()
-    -- Auto-start Claude Code window in background on startup
+    -- Auto-start Claude Code session in background on startup
     vim.defer_fn(function()
-      require("sidekick.cli").open({ name = "claude", focus = false })
-      require("sidekick.cli").toggle({ name = "claude", focus = false })
+      require("sidekick.cli").show({ name = "claude", focus = false })
+      vim.defer_fn(function()
+        require("sidekick.cli").hide({ name = "claude" })
+      end, 50)
     end, 100)
   end,
   -- stylua: ignore
