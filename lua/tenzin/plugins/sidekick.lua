@@ -1,21 +1,21 @@
 return {
-	"folke/sidekick.nvim",
-	opts = {
-		-- add any options here
-		cli = {
-			mux = {
-				backend = "tmux",
-				enabled = false,
-			},
-		},
-	},
-	init = function()
-		-- Auto-start Claude Code window in background on startup
-		vim.defer_fn(function()
-			require("sidekick.cli").show({ name = "claude", focus = false })
-			require("sidekick.cli").toggle({ name = "claude", focus = false, filter = { attached = false } })
-		end, 100)
-	end,
+  "folke/sidekick.nvim",
+  opts = {
+    -- add any options here
+    cli = {
+      mux = {
+        backend = "tmux",
+        enabled = false,
+      },
+    },
+  },
+  init = function()
+    -- Auto-start Claude Code window in background on startup
+    vim.defer_fn(function()
+      require("sidekick.cli").toggle({ name = "claude", focus = false, filter = { terminal = false } })
+      require("sidekick.cli").toggle({ name = "claude", focus = false, filter = { attached = false } })
+    end, 100)
+  end,
   -- stylua: ignore
   keys = {
     {
@@ -33,6 +33,7 @@ return {
       "<leader>cl",
       function() require("sidekick.nes").clear() end,
       desc = "Clear All Edit Suggestions",
+      mode = { "n" }
     },
     {
       "<leader>aa",
