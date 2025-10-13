@@ -10,10 +10,47 @@ return {
 		},
 	},
 	init = function()
+		-- Helper function to always create a new terminal session, bypassing selection UI
+		local function new_terminal(tool_name, opts)
+			opts = opts or {}
+			local Config = require("sidekick.config")
+			local Session = require("sidekick.cli.session")
+			local State = require("sidekick.cli.state")
+
+			-- Setup session backends if not already done
+			Session.setup()
+
+			-- Get the tool
+			local tool = Config.get_tool(tool_name)
+			if not tool then
+				vim.notify("Tool '" .. tool_name .. "' not found", vim.log.levels.ERROR)
+				return
+			end
+
+			-- Create a new session directly
+			local session = Session.new({ tool = tool_name, backend = "terminal" })
+
+			-- Attach the session (this creates the terminal)
+			session = Session.attach(session)
+
+			-- Get the state and show/focus the terminal
+			local state = State.get_state(session)
+			if state.terminal then
+				state.terminal:show()
+				if opts.focus then
+					state.terminal:focus()
+				end
+			end
+
+			return state
+		end
+
+		-- Make it globally accessible for keybindings if needed
+		_G.sidekick_new_terminal = new_terminal
+
 		-- Auto-start Claude Code window in background on startup
 		vim.defer_fn(function()
-			require("sidekick.cli").send({ name = "claude", msg = "", focus = false })
-			require("sidekick.cli").toggle({ name = "claude", focus = false })
+			new_terminal("claude", { focus = false })
 		end, 100)
 	end,
   -- stylua: ignore
@@ -66,11 +103,11 @@ return {
       mode = { "n", "x", "i", "t" },
       desc = "Sidekick Switch Focus",
     },
-    -- Example of a keybinding to open Claude directly
+    -- Example of a keybinding to open Claude directly (always creates new session)
     {
       "<leader>ac",
-      function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
-      desc = "Sidekick Claude Toggle",
+      function() _G.sidekick_new_terminal("claude", { focus = true }) end,
+      desc = "Sidekick Claude New Session",
       mode = { "n", "v" },
     },
   },
