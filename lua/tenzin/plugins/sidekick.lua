@@ -13,7 +13,7 @@ return {
     -- Auto-start Claude Code window in background on startup
     vim.defer_fn(function()
       require("sidekick.cli").toggle({ name = "claude", focus = false })
-      -- require("sidekick.cli").toggle({ name = "claude", focus = false })
+      require("sidekick.cli").toggle({ name = "claude", focus = false })
     end, 100)
   end,
   -- stylua: ignore
@@ -28,6 +28,11 @@ return {
       end,
       expr = true,
       desc = "Goto/Apply Next Edit Suggestion",
+    },
+    {
+      "<leader>cl",
+      function() require("sidekick.nes").clear() end,
+      desc = "Clear All Edit Suggestions",
     },
     {
       "<leader>aa",
