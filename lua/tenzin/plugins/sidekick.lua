@@ -51,6 +51,7 @@ return {
 		-- Auto-start Claude Code window in background on startup
 		vim.defer_fn(function()
 			new_terminal("claude", { focus = false })
+			require("sidekick.cli").toggle("claude")
 		end, 100)
 	end,
   -- stylua: ignore
@@ -103,11 +104,11 @@ return {
       mode = { "n", "x", "i", "t" },
       desc = "Sidekick Switch Focus",
     },
-    -- Example of a keybinding to open Claude directly (always creates new session)
+    -- Example of a keybinding to open Claude directly
     {
       "<leader>ac",
-      function() _G.sidekick_new_terminal("claude", { focus = true }) end,
-      desc = "Sidekick Claude New Session",
+      function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
+      desc = "Sidekick Claude Toggle",
       mode = { "n", "v" },
     },
   },
