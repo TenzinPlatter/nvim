@@ -7,9 +7,9 @@ vim.keymap.set("n", "<leader>w", function()
 end)
 
 vim.keymap.set("n", "ZZ", function()
-	require("persistence").save()
 	-- Close all sidekick terminals if any are open
 	local Terminal = require("sidekick.cli.terminal")
+	require("persistence").save()
 	for _, term in pairs(Terminal.terminals) do
 		term:close()
 	end
