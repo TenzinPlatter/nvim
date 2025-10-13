@@ -16,8 +16,6 @@ return {
 					text = false,
 				},
 			})
-
-			vim.cmd("silent! Copilot disable")
 		end,
 		keys = {
 			{"<leader>aie", function() vim.cmd("Copilot enable") end, desc = "Enable copilot"},
