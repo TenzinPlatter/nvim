@@ -9,7 +9,7 @@ return {
 	opts = {
 		filter = function(mapping)
 			-- Filter out mouse mappings
-			return not vim.startswith(mapping.lhs or "", "<.*Mouse")
+			return not vim.startswith(mapping.lhs or "", ".*Mouse.*")
 		end,
 	},
 }
