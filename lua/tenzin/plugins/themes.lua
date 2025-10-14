@@ -15,8 +15,8 @@ return {
 				variant = "moon",
 				styles = {
 					transparency = true,
-					bold = false,
-					italic = false,
+					bold = true,
+					italic = true,
 				},
 			})
 		end,
