@@ -51,6 +51,9 @@ return {
 		-- Auto-start Claude Code window in background on startup
 		vim.defer_fn(function()
 			new_terminal("claude", { focus = false })
+		end, 100)
+
+		vim.defer_fn(function()
 			require("sidekick.cli").toggle("claude")
 		end, 100)
 	end,
