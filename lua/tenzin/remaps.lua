@@ -94,3 +94,7 @@ end)
 vim.keymap.set("i", "t", function()
 	require("tenzin.helpers").insert_async_before_function()
 end)
+
+vim.keymap.set({'n', 'v'}, '<LeftMouse>', '<Nop>')
+vim.keymap.set({'n', 'v'}, '<LeftDrag>', '<Nop>')
+vim.keymap.set({'n', 'v'}, '<LeftRelease>', '<Nop>')
