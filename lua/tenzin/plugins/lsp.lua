@@ -8,6 +8,10 @@ return {
 				cmd = { "clangd", "--header-insertion=never" },
 			})
 
+			lspconfig("copilot", {
+				cmd = { "copilot-language-server", "--stdio" },
+			})
+
 			-- delete default lsp keybinds
 			vim.keymap.del("n", "grr")
 			vim.keymap.del("n", "gra")
