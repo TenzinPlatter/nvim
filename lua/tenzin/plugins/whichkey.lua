@@ -7,9 +7,9 @@ return {
 		vim.o.timeoutlen = 250
 	end,
 	opts = {
-		triggers_blacklist = {
-			n = { "<LeftMouse>", "<2-LeftMouse>", "<3-LeftMouse>", "<4-LeftMouse>", "<LeftDrag>", "<LeftRelease>" },
-			v = { "<LeftMouse>", "<2-LeftMouse>", "<3-LeftMouse>", "<4-LeftMouse>", "<LeftDrag>", "<LeftRelease>" },
-		},
+		filter = function(mapping)
+			-- Filter out mouse mappings
+			return not vim.startswith(mapping.lhs or "", "<.*Mouse")
+		end,
 	},
 }
