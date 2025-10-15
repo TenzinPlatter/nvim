@@ -48,6 +48,11 @@ return {
 		-- Make it globally accessible for keybindings if needed
 		_G.sidekick_new_terminal = new_terminal
 
+
+		if vim.fn.executable('claude') ~= 1 then
+		  return
+		end
+
 		-- Auto-start Claude Code window in background on startup
 		vim.defer_fn(function()
 			new_terminal("claude", { focus = false })
