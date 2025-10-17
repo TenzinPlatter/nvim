@@ -86,13 +86,13 @@ return {
 			desc = "File Explorer",
 		},
 		-- find
-		{
-			"ff",
-			function()
-				Snacks.picker.files({ignored = false, follow = true})
-			end,
-			desc = "Find Files",
-		},
+		-- {
+		-- 	"ff",
+		-- 	function()
+		-- 		Snacks.picker.files({ignored = false, follow = true})
+		-- 	end,
+		-- 	desc = "Find Files",
+		-- },
 		{
 			"<leader>fg",
 			function()
