@@ -87,7 +87,7 @@ return {
 		},
 		-- find
 		{
-			"ff",
+			"<leader>ff",
 			function()
 				Snacks.picker.files({ignored = false, follow = true})
 			end,
