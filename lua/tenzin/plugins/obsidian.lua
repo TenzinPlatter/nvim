@@ -15,6 +15,7 @@ return {
 		"BufNewFile /home/tenzin/gr/notes/*.md",
 	},
 	opts = {
+		ui = { enable = false },
 		workspaces = {
 			{
 				name = "greenroom",

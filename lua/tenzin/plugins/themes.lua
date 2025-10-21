@@ -1,11 +1,19 @@
 return {
 	{
 		"https://github.com/rebelot/kanagawa.nvim",
-		config = function()
-			require("kanagawa").setup({
-				transparent = true,
-			})
-		end,
+		opts = {
+			transparent = true,
+			theme = {
+				all = {
+					ui = {
+						bg_gutter = "none",
+						float = {
+							bg = "none",
+						},
+					},
+				},
+			},
+		},
 	},
 	{
 		"https://github.com/rose-pine/neovim",
