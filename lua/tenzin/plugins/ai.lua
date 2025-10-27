@@ -4,17 +4,16 @@ return {
 		config = function()
 			require("copilot").setup({
 				suggestion = {
-					enabled = false,
+					enabled = true,
 				},
 				panel = {
 					enabled = false,
 				},
-				filetypes = {
-					["*"] = true,
-					markdown = false,
-					help = false,
-					text = false,
-				},
+				-- filetypes = {
+				-- 	["*"] = true,
+				-- 	help = false,
+				-- 	text = false,
+				-- },
 			})
 		end,
 		keys = {
