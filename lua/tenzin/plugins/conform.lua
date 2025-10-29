@@ -34,7 +34,7 @@ return {
 			mode = { "n" },
 		},
 		{
-			"<leader>f",
+			"<leader>=",
 			function()
 				require("conform").format({
 					range = {
