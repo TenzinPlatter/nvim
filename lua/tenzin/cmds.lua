@@ -37,3 +37,30 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.keymap.set('n', '<leader>sh', ':LspClangdSwitchSourceHeader<CR>', { buffer = true })
   end,
 })
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+  callback = function()
+    vim.opt_local.makeprg = "npm run build"
+    vim.opt_local.errorformat = {
+      -- TypeScript/JavaScript errors
+      "%f(%l\\,%c): %trror TS%n: %m",
+      "%f(%l\\,%c): %tarning TS%n: %m",
+      -- ESBuild/Vite style
+      "%f:%l:%c: %trror: %m",
+      "%f:%l:%c: %tarning: %m",
+      -- Webpack style
+      "%EERROR in %f:%l:%c",
+      "%EERROR in %f",
+      "%WWARNING in %f:%l:%c",
+      "%WWARNING in %f",
+      "%Z%m",
+      -- Generic catch-all
+      "%E%f:%l:%m",
+      "%W%f:%l:%m",
+      -- Ignore lines that don't match
+      "%-G%.%#"
+    }
+  end,
+})
