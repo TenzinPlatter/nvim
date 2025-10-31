@@ -363,11 +363,27 @@ return {
 		},
 		-- LSP
 		{
-			"gd",
+			"gdd",
 			function()
 				Snacks.picker.lsp_definitions()
 			end,
 			desc = "Goto Definition",
+		},
+		{
+			"gdv",
+			function()
+				vim.cmd("vsplit")
+				vim.lsp.buf.definition()
+			end,
+			desc = "Goto Definition in vertical split",
+		},
+		{
+			"gdh",
+			function()
+				vim.cmd("split")
+				vim.lsp.buf.definition()
+			end,
+			desc = "Goto Definition in horizontal split",
 		},
 		{
 			"gD",
