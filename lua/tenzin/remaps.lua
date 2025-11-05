@@ -1,10 +1,10 @@
-vim.keymap.set("n", "zi", "za")
+vim.keymap.set("n", "zi", "za", { desc = "Toggle fold under cursor" })
 
 vim.keymap.set("i", "<C-I>", '<C-R>"', { desc = "Paste from '\"' in insert" })
 
 vim.keymap.set("n", "<leader>w", function()
 	vim.cmd("wall")
-end)
+end, { desc = "Save all buffers" })
 
 vim.keymap.set("n", "ZZ", function()
 	-- Close all sidekick terminals if any are open
@@ -24,73 +24,59 @@ vim.keymap.set("n", "ZZ", function()
 		end
 	end
 	vim.cmd("quit")
-end)
+end, { desc = "Save session, close all buffers and quit" })
 
 vim.keymap.set("i", "<C-T>", function()
 	require("tenzin.helpers").insert_self()
 end, { desc = "Insert self/this reference" })
 
-vim.keymap.set("n", "<C-l>", "xp")
-vim.keymap.set("n", "<C-h>", "xhP")
+vim.keymap.set("n", "<C-l>", "xp", { desc = "Swap character with next" })
+vim.keymap.set("n", "<C-h>", "xhP", { desc = "Swap character with previous" })
 
--- Copy selection to clipboard
-vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set({ "n", "v" }, "<leader>y", '"+y', { desc = "Copy to clipboard" })
 
--- Highlight whole buffer
-vim.keymap.set("n", "<leader>%", "ggVG")
+vim.keymap.set("n", "<leader>%", "ggVG", { desc = "Select entire buffer" })
 
--- Copy line to clipboard
-vim.keymap.set("n", "<leader>yy", '"+yy')
+vim.keymap.set("n", "<leader>yy", '"+yy', { desc = "Copy line to clipboard" })
 
--- Paste from clipboard
-vim.keymap.set("v", "<leader>p", '"+p')
-vim.keymap.set("n", "<leader>p", '"+p')
+vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from clipboard" })
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 
--- Navigate quick fix list
 vim.keymap.set("n", "<leader>j", function()
 	vim.cmd("cnext")
-end)
+end, { desc = "Next quickfix item" })
 vim.keymap.set("n", "<leader>k", function()
 	vim.cmd("cprev")
-end)
+end, { desc = "Previous quickfix item" })
 vim.keymap.set("n", "<leader>qf", function()
 	vim.cmd("copen")
-end)
+end, { desc = "Open quickfix list" })
 
--- Navigate one screen line rather than actual line
-vim.keymap.set("n", "j", "gj")
-vim.keymap.set("n", "k", "gk")
+vim.keymap.set("n", "j", "gj", { desc = "Move down by display line" })
+vim.keymap.set("n", "k", "gk", { desc = "Move up by display line" })
 
--- clears highlight left after searching
 vim.keymap.set("n", "<C-c>", function()
 	vim.cmd("nohlsearch")
-end)
+end, { desc = "Clear search highlights" })
 
--- make the window bigger vertically
-vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]])
--- make the window smaller vertically
-vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]])
--- make the window bigger horizontally by pressing shift and =
-vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]])
--- make the window smaller horizontally by pressing shift and -
-vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]])
+vim.keymap.set("n", "=", [[<cmd>vertical resize +5<cr>]], { desc = "Increase window width" })
+vim.keymap.set("n", "-", [[<cmd>vertical resize -5<cr>]], { desc = "Decrease window width" })
+vim.keymap.set("n", "+", [[<cmd>horizontal resize +2<cr>]], { desc = "Increase window height" })
+vim.keymap.set("n", "_", [[<cmd>horizontal resize -2<cr>]], { desc = "Decrease window height" })
 
--- move selection up/ down
-vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
--- move line up/ down
-vim.keymap.set("n", "<C-j>", "V:m '>+1<CR>gv=")
-vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=")
+vim.keymap.set("n", "<C-j>", "V:m '>+1<CR>gv=", { desc = "Move line down" })
+vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=", { desc = "Move line up" })
 
-vim.keymap.set("v", "<", "<gv")
-vim.keymap.set("v", ">", ">gv")
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
--- Show LSP hover for function when cursor is in parameter braces
 vim.keymap.set("i", "<C-u>", function()
 	require("tenzin.helpers").show_hover_in_function_params()
-end)
+end, { desc = "Show function signature help in insert mode" })
 
 vim.keymap.set("i", "t", function()
 	require("tenzin.helpers").insert_async_before_function()
-end)
+end, { desc = "Insert 'async' before function declaration" })
