@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.opt.termguicolors = true
+-- test
 
 -- Tab settings: always use 2 spaces
 vim.opt.tabstop = 2
