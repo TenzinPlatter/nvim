@@ -5,7 +5,7 @@ return {
 	},
 	opts = {
 		keymap = {
-			show_profile = "<leader>tp",
+			show_profile = "<C-t>p",
 		},
 	},
 }
