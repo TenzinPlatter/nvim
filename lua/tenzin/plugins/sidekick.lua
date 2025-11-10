@@ -10,6 +10,9 @@ return {
 		},
 	},
   -- stylua: ignore
+  init = function ()
+    require("sidekick.nes").disable()
+  end,
   keys = {
     {
       "<tab>",
