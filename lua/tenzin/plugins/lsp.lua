@@ -4,10 +4,6 @@ return {
 		config = function()
 			local lspconfig = vim.lsp.config
 
-			lspconfig("clangd",  {
-				cmd = { "clangd", "--header-insertion=never" },
-			})
-
 			-- delete default lsp keybinds
 			vim.keymap.del("n", "grr")
 			vim.keymap.del("n", "gra")
