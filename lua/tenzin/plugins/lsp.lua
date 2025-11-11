@@ -8,10 +8,6 @@ return {
 				cmd = { "clangd", "--header-insertion=never" },
 			})
 
--- 			lspconfig("copilot", {
--- 				cmd = { "copilot-language-server", "--stdio" },
--- 			})
-
 			lspconfig("copilot-language-server", {
 				cmd = { "copilot-language-server", "--stdio" },
 			})
