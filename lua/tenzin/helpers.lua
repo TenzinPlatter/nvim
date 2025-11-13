@@ -155,15 +155,36 @@ function M.insert_async_before_function()
 
             -- Find the position to insert 'async'
             -- Check if 'async' already exists
-            if not (func_line_text:match("^%s*async%s") or func_line_text:match("^%s*export%s+async%s")) then
+            if not (func_line_text:match("^%s*async%s") or func_line_text:match("^%s*export%s+async%s") or func_line_text:match("%s+async%s+fn%s")) then
               -- Determine insertion position
               local insert_col = start_col
               local prefix = func_line_text:sub(1, start_col)
 
-              -- Handle 'export' keyword for JS/TS
-              local export_match = prefix:match("^(%s*export%s+)")
-              if export_match then
-                insert_col = #export_match
+              -- Get filetype to handle language-specific modifiers
+              local filetype = vim.bo[bufnr].filetype
+
+              if filetype == "rust" then
+                -- For Rust, insert after visibility and safety modifiers
+                -- Order: pub(...)? unsafe? const? extern? async fn
+                -- Match patterns for Rust modifiers before 'fn'
+                local rust_modifier_match = func_line_text:match("^(%s*pub%s*%([^)]+%)%s+unsafe%s+)")
+                  or func_line_text:match("^(%s*pub%s*%([^)]+%)%s+const%s+)")
+                  or func_line_text:match("^(%s*pub%s*%([^)]+%)%s+)")
+                  or func_line_text:match("^(%s*pub%s+unsafe%s+)")
+                  or func_line_text:match("^(%s*pub%s+const%s+)")
+                  or func_line_text:match("^(%s*pub%s+)")
+                  or func_line_text:match("^(%s*unsafe%s+)")
+                  or func_line_text:match("^(%s*const%s+)")
+
+                if rust_modifier_match then
+                  insert_col = #rust_modifier_match
+                end
+              else
+                -- Handle 'export' keyword for JS/TS
+                local export_match = prefix:match("^(%s*export%s+)")
+                if export_match then
+                  insert_col = #export_match
+                end
               end
 
               -- Insert 'async '
