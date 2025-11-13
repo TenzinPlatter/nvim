@@ -109,8 +109,10 @@ function M.insert_async_before_function()
   -- Check if the 4 characters before cursor are 'awai'
   if before_cursor == "awai" then
     local parser = vim.treesitter.get_parser(bufnr)
+    print("DEBUG: Parser:", parser)
     if parser then
       local tree = parser:parse()[1]
+      print("DEBUG: Tree:", tree)
       if tree then
         local root = tree:root()
         local current_node = root:named_descendant_for_range(row, col, row, col)
