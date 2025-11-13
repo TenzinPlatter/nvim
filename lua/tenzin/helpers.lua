@@ -104,7 +104,9 @@ function M.insert_async_before_function()
 
   -- Get the 4 characters before the cursor
   local line_text = vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1]
-  local before_cursor = line_text:sub(math.max(1, col - 3), col)
+  -- Note: col is 0-indexed from nvim API, but Lua string.sub is 1-indexed
+  -- To get 4 chars ending at cursor position, we need: sub(col-2, col+1)
+  local before_cursor = line_text:sub(math.max(1, col - 2), col + 1)
 
   -- Check if the 4 characters before cursor are 'awai'
   print(string.format("DEBUG: before_cursor='%s', col=%d, row=%d", before_cursor, col, row))
