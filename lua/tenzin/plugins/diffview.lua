@@ -5,8 +5,8 @@ return {
 			enhanced_diff_hl = true,
 			view = {
 				merge_tool = {
-					-- layout = "diff3_horizontal",
-					layout = "diff4_horizontal",
+					-- layout = "diff3_mixed",
+					layout = "diff4_mixed",
 				},
 			},
 		})
