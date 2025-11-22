@@ -1,6 +1,6 @@
 vim.keymap.set("n", "zi", "za", { desc = "Toggle fold under cursor" })
 
-vim.keymap.set("i", "<C-I>", '<C-R>"', { desc = "Paste from '\"' in insert" })
+vim.keymap.set("i", "<C-i>", '<C-R>"', { desc = "Paste from '\"' in insert" })
 
 vim.keymap.set("n", "<leader>w", function()
 	vim.cmd("wall")
@@ -72,10 +72,6 @@ vim.keymap.set("n", "<C-k>", "V:m '<-2<CR>gv=", { desc = "Move line up" })
 
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
-
-vim.keymap.set("i", "<C-u>", function()
-	require("tenzin.helpers").show_hover_in_function_params()
-end, { desc = "Show function signature help in insert mode" })
 
 vim.keymap.set("i", "t", function()
 	require("tenzin.helpers").insert_async_before_function()
