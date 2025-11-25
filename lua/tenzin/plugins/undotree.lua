@@ -1,7 +1,14 @@
 return {
-	"https://github.com/mbbill/undotree.git",
-	config = function()
-		require("undotree").setup({
-		})
-	end,
+	"jiaoshijie/undotree",
+	opts = {
+		-- your options
+	},
+	keys = { -- load the plugin only when using it's keybinding:
+		{
+			"<leader>uu",
+			function()
+				require("undotree").toggle()
+			end,
+		},
+	},
 }
