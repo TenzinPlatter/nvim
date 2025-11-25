@@ -1,6 +1,9 @@
 return {
 	"pwntester/octo.nvim",
 	event = "VeryLazy",
+	cond = function()
+		return vim.fn.executable("gh") == 1
+	end,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope.nvim",
